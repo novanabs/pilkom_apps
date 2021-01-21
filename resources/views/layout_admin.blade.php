@@ -117,7 +117,8 @@
                                     <div class="col-12 p-0 mb-2">
                                         <p class="m-0 info-color">User info</p>
                                         {{-- NAMA USER --}}
-                                        <span class="font-weight-bold info-color">{{\Auth::user()->short_name}}</span>
+                                        {{-- <span class="font-weight-bold info-color">{{\Auth::user()->short_name}}</span>
+                                        --}}
                                     </div>
                                     {{-- USER ID --}}
                                     {{-- <div class="col-6 p-0">
@@ -127,13 +128,14 @@
                                     <div class="col-12 p-0">
                                         {{-- GROUP ID --}}
                                         <i class="fa fa-users fa-sm mr-2 fa-fw arrow-icon" style="color: #465442"></i>
-                                        <span class="small info-color">{{\Auth::user()->groups->id}}</span>
+                                        {{-- <span class="small info-color">{{\Auth::user()->groups->id}}</span> --}}
                                     </div>
                                     <div class="col-12 p-0">
                                         {{-- NAMA DAN ID CABANG --}}
                                         <i class="fa fa-envelope fa-sm mr-2 fa-fw arrow-icon"
                                             style="color: #088938"></i>
-                                        <span id="set_cabang" class="small info-color">{{\Auth::user()->email}}</span>
+                                        {{-- <span id="set_cabang" class="small info-color">{{\Auth::user()->email}}</span>
+                                        --}}
 
                                     </div>
                                 </div>
