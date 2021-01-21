@@ -61,7 +61,7 @@ class LoginController extends Controller
         //TAMPUNG INFORMASI LOGINNYA
         $login = [
             'email' => $request->email,
-            'password' => $request->password
+            // 'password' => $request->password
         ];
         
         //LAKUKAN LOGIN
