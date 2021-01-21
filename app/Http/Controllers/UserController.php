@@ -1,0 +1,146 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Group;
+use App\User;
+use App\Http\Requests\UserRequest;
+use Hash;
+
+class UserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {   
+        if(request()->ajax())
+        {
+            $table = User::get(); 
+            
+            return datatables()->of($table)
+            ->addColumn('action', function($data){
+                
+                $button = '<div class="btn-group btn-group-sm" role="group">';
+                $button .= '<button id="edit-user" data-id="'.$data->id.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
+                if(\Auth::user()->group_id == "SUPER_ADMIN"){
+                    $button .= '<button id="delete-user"  data-id="'.$data->id.'" class="btn btn-danger btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Del</small></button>';
+                }
+                $button .= '</div>';
+                
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+
+        $groups = Group::all();
+        
+        return view('master.user',compact(['groups']));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UserRequest $request)
+    {
+        // create baru
+        if($request->action == 'add'){
+            User::insert([
+                'email' => $request->email,
+                'name' => $request->name,
+                'password' => Hash::make($request->password),
+                'phonenumber' => $request->phonenumber,
+                'group_id' => $request->group_id,
+                'created_at' => now(),
+            ]);
+
+            return response()->json(['success' => 'Tambah user berhasil!'], 200);
+
+        }else{ // update
+
+            $user =  User::find($request->id);
+
+            $user->name = $request->name;
+            $user->address = $request->address;
+            $user->phonenumber = $request->phonenumber;
+            $user->group_id = $request->group_id;
+            $user->updated_at = now();
+ 
+            if($request->password != ""){
+                $user->password = Hash::make($request->password);
+            }
+
+            if($request->email != $user->email){
+                $user->email = $request->email;
+            }
+
+            $user->save();
+
+            return response()->json(['success' => 'Update user berhasil!'], 200);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        return response()->json($user, 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+    }
+}

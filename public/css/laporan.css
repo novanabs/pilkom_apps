@@ -1,0 +1,179 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Padding 0 */
+.p-0 {
+    padding: 0 !important;
+}
+
+/* Typography */
+.font_kecil {
+    font-family: monospace !important;
+    font-size: 15px !important;
+    font-weight: normal !important;
+    padding: 0 !important;
+}
+
+/* Judul */
+.title {
+    font-weight: 800 !important;
+    font-size: 20px !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Spasi Kolom Besar*/
+.p-besar {
+    padding: 20px;
+}
+
+/* Spasi Kolom kecil */
+.p-kecil {
+    padding: 12px;
+}
+
+
+/* Table 100% width dan border-collapse */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table border - Testing */
+table,
+td,
+th {
+    /* border: 1px black solid; */
+}
+
+/* td content */
+table#table-content td {
+    font-size: 13px;
+    padding: 3px !important;
+}
+
+/* th content */
+table#table-content th {
+    font-size: 15px;
+    font-weight: bolder;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+}
+
+/* padding th content terakhir */
+table#table-content tr:last-child th {
+    padding-bottom: 3px;
+}
+
+/* padding th content pertama */
+table#table-content tr:first-child th {
+    padding-top: 3px;
+}
+
+/* Modif khusus teller */
+table#table-content>tbody>tr.row-teller>td {
+    padding-bottom: 0 !important;
+    padding-top: 3px;
+    font-weight: bold;
+}
+
+/* Modif khusus tanggal */
+table#table-content>tbody>tr.row-tanggal>td {
+    padding-top: 0 !important;
+    padding-bottom: 3px;
+}
+
+/* table#table-content>tbody>tr.row-content>td {
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+} */
+
+/* Text alignment */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.no-break {
+    white-space: nowrap;
+}
+
+/* Border  */
+.border-top {
+    border-top: 1px solid black !important;
+    font-weight: bold;
+}
+
+.border-top-bottom {
+    border-top: 1.5px solid black !important;
+    border-bottom: 1.5px solid black !important;
+}
+
+.border-t {
+    border-top: 1px solid black !important;
+}
+
+.padding-top-bottom {
+    padding: 10px !important;
+}
+
+.nama {
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+/* FOOTER */
+
+footer {
+    position: fixed;
+    bottom: -7.4rem;
+    left: 0px;
+    right: 0px;
+    height: 120px;
+}
+
+#footer_page tbody td {
+    font-size: 10px;
+}
+
+#footer_page {
+    margin: 5px;
+}
+
+table#footer_page,
+table#footer_page tr,
+table#footer_page td {
+    /* border: 1px black solid; */
+}
+
+tfoot>tr>td>span.pagenum::after {
+    content: counter(page);
+}
+
+thead {
+    display: table-header-group
+}
+
+tfoot {
+    display: table-footer-group;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+.p-y{
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+}
