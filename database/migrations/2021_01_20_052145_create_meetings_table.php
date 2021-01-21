@@ -20,7 +20,7 @@ class CreateMeetingsTable extends Migration
             $table->unsignedBigInteger('room_id')->index();
             $table->datetime('meeting_date');
             $table->Integer('duration');
-            $table->string('notes',10000);
+            $table->text('notes');
             $table->timestamps();
 
             $table->foreign('notulen_id')->references('id')->on('users')->onDelete('cascade');

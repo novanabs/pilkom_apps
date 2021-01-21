@@ -105,8 +105,8 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <span class="text-secondary" style="font-size:10px;">Copyright &copy; Brixzen Indonesia
-                            2020</span>
+                        <span class="text-secondary" style="font-size:10px;">Copyright &copy; Pilkom ULM
+                            2021</span>
                         {{-- COPYRIGHT --}}
                     </div>
                 </form>
