@@ -26,7 +26,7 @@ Route::namespace('Auth')->group(function(){
     // NOT USED Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
     // NOT USED Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
 });
-Route::get('/','homeController@index')->name('home');
+Route::get('/','HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function(){
     
     // MASTER USER
