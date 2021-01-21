@@ -27,7 +27,8 @@ Route::namespace('Auth')->group(function(){
     // NOT USED Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
 });
 Route::get('/','HomeController@index')->name('home');
-Route::middleware(['auth'])->group(function(){
+
+// Route::middleware(['auth'])->group(function(){
     
     // MASTER USER
     Route::resource('master_user', 'UserController'); // sistem_user
@@ -43,4 +44,4 @@ Route::middleware(['auth'])->group(function(){
 
      
     Route::get('/home', 'HomeController@index')->name('home');
-});
+// });
