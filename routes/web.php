@@ -28,7 +28,7 @@ Route::namespace('Auth')->group(function(){
 });
 Route::get('/','HomeController@index')->name('home');
 
-// Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     
     // MASTER USER
     Route::resource('master_user', 'UserController'); // sistem_user
@@ -44,4 +44,4 @@ Route::get('/','HomeController@index')->name('home');
 
      
     Route::get('/home', 'HomeController@index')->name('home');
-// });
+});
