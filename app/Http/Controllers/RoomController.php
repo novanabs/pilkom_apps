@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Room;
+use Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -27,6 +28,10 @@ class RoomController extends Controller
                 $button .= '</div>';
                 
                 return $button;
+            })
+            ->editColumn('created_at', function($data){
+                $date = new carbon($data->created_at);
+                return $date->format('Y-m-d');
             })
             ->rawColumns(['action'])
             ->make(true);
