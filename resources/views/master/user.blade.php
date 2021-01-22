@@ -16,6 +16,9 @@
             <tr class="text-center">
                 <th style="width:20%;">Email</th>
                 <th style="width:30%;">Nama</th>
+                <th style="width:30%;">Jabatan</th>
+                <th style="width:30%;">NIP/NIK</th>
+                <th style="width:30%;">NIDN</th>
                 <th style="width:30%;">Alamat</th>
                 <th style="width:10%;">No. Handphone</th>
                 <th style="width:10%;">Hak Akses</th>
@@ -68,11 +71,26 @@
                             </div>
                         </div>
                         <div class="mb-2 row">
-                            <label class="col-sm-4 col-form-label col-form-label-sm">No. Handphone
+                            <label class="col-sm-4 col-form-label col-form-label-sm">NIP/NIK
                             </label>
                             <div class="col-sm-8 ">
-                                <input type="text" class="form-control form-control-sm" id="phonenumber"
-                                    name="phonenumber" required>
+                                <input type="text" class="form-control form-control-sm" id="NIP_NIK" name="NIP_NIK"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label col-form-label-sm">NIDN
+                            </label>
+                            <div class="col-sm-8 ">
+                                <input type="text" class="form-control form-control-sm" id="NIDN" name="NIDN" required>
+                            </div>
+                        </div>
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label col-form-label-sm">Jabatan
+                            </label>
+                            <div class="col-sm-8 ">
+                                <input type="text" class="form-control form-control-sm" id="job_title" name="job_title"
+                                    required>
                             </div>
                         </div>
                         <div class="mb-2 row">
@@ -153,6 +171,9 @@
             columns: [ // load data
             { data: 'email', name: 'email'},
                 { data: 'name', name: 'name' },
+                { data: 'job_titles.name', name: 'job_titles.name' },
+                { data: 'NIP_NIK', name: 'NIP_NIK' },
+                { data: 'NIDN', name: 'NIDN' },
                 { data: 'address', name: 'address' },
                 { data: 'phonenumber', name: 'phonenumber' }, 
                 { data: 'group_id', name: 'group_id' },
@@ -194,6 +215,9 @@
                 $('#email').val(data.email);
                 $('#name').val(data.name);
                 $('#id').val(data.id);
+                $('#job_title').val(data.job_title);
+                $('#NIP_NIK').val(data.NIP_NIK);
+                $('#NIDN').val(data.NIDN);
                 $('#address').val(data.address);
                 $('#phonenumber').val(data.phonenumber);
                 $('#group_id').val(data.group_id);

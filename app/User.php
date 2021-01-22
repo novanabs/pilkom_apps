@@ -47,6 +47,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Group','group_id','id');
     }
 
+    // group_id belongsTo Groups
+    public function job_titles()
+    {
+        return $this->belongsTo('App\Job_title','job_title_id','id');
+    }
+
 
     public function getShortNameAttribute(){
         

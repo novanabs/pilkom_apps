@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('address',100)->nullable();
             $table->string('phonenumber',15)->nullable();
-            $table->string('NIP',30)->nullable();
-            $table->string('NIK',30)->nullable();
+            $table->string('NIP_NIK',30)->nullable();
             $table->string('NIDN',30)->nullable();
+            $table->string('job_title_id',20)->index();
             $table->string('group_id',20)->index();
             $table->rememberToken();
             $table->timestamps();
