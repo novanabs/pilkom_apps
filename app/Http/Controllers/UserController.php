@@ -25,7 +25,7 @@ class UserController extends Controller
             ->addColumn('action', function($data){
                 
                 $button = '<div class="btn-group btn-group-sm" role="group">';
-                if(\Auth::user()->name == $data->name){
+                if(\Auth::user()->name == $data->name && \Auth::user()->group_id != "SUPER_ADMIN"){ // hanya bisa mengedit dirinya sendiri
                     $button .= '<button id="edit-user" data-id="'.$data->id.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
                 }
                 
