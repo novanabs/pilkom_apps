@@ -24,7 +24,9 @@ class RoomController extends Controller
                 
                 $button = '<div class="btn-group btn-group-sm" role="group">';
                 $button .= '<button id="edit-room" data-id="'.$data->id.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
-                $button .= '<button id="delete-room"  data-id="'.$data->id.'" class="btn btn-danger btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Del</small></button>';
+                if(\Auth::user()->group_id == "SUPER_ADMIN"){
+                    $button .= '<button id="delete-room"  data-id="'.$data->id.'" class="btn btn-danger btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Del</small></button>';
+                }
                 $button .= '</div>';
                 
                 return $button;
