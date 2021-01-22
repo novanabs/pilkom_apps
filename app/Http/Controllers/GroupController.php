@@ -70,6 +70,8 @@ class GroupController extends Controller
                 'created_at' => now(),
             ]);
 
+            Log::info('Tambah hak akses oleh - '.\Auth::user()->name);
+
             return response()->json(['success' => 'Tambah hak akses berhasil!'], 200);
 
         }else{ // update
@@ -79,6 +81,8 @@ class GroupController extends Controller
             $Group->id = $request->id;
             $Group->updated_at = now();
             $Group->save();
+
+            Log::info('Update hak akses oleh -'.\Auth::user()->name);
 
             return response()->json(['success' => 'Update hak akses berhasil!'], 200);
         }
@@ -129,5 +133,7 @@ class GroupController extends Controller
     public function destroy($id)
     {
         Group::find($id)->delete();
+
+        Log::info('Hapus hak akses oleh -'.\Auth::user()->name);
     }
 }

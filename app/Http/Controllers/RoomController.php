@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Room;
 use Carbon\Carbon;
+use Log;
 
 class RoomController extends Controller
 {
@@ -68,6 +69,8 @@ class RoomController extends Controller
                 'created_at' => now(),
             ]);
 
+            Log::info('Tambah ruangan oleh -'.\Auth::user()->name);
+
             return response()->json(['success' => 'Tambah Room berhasil!'], 200);
 
         }else{ // update
@@ -79,6 +82,8 @@ class RoomController extends Controller
             $Room->updated_at = now();
 
             $Room->save();
+
+            Log::info('Update ruangan oleh -'.\Auth::user()->name);
 
             return response()->json(['success' => 'Update Room berhasil!'], 200);
         }
@@ -129,5 +134,7 @@ class RoomController extends Controller
     public function destroy($id)
     {
         Room::find($id)->delete();
+
+        Log::info('Hapus ruangan oleh -'.\Auth::user()->name);
     }
 }

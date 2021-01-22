@@ -89,7 +89,8 @@ class MeetingController extends Controller
             }
 
         }
-       
+
+        Log::info('Tambah catatan rapat oleh -'.\Auth::user()->name);
         
         return redirect()->route('app_meeting.index')->with('success','Data rapat baru berhasil ditambahkan!');
     }
@@ -168,6 +169,8 @@ class MeetingController extends Controller
                 ]);
             }
         }
+
+        Log::info('Update catatan rapat oleh -'.\Auth::user()->name);
         
         return redirect()->route('app_meeting.index');
     }
@@ -180,7 +183,7 @@ class MeetingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Log::info('Hapus catatan rapat oleh -'.\Auth::user()->name);
     }
 
     /** Additional funtion */

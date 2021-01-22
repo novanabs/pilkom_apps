@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Group;
 use App\User;
 use App\Http\Requests\UserRequest;
-use Hash;
+use Hash,Log;
 
 class UserController extends Controller
 {
@@ -77,11 +77,13 @@ class UserController extends Controller
             if(\Auth::user()->group_id != "SUPER_ADMIN"){
                 $user->group_id = "ADMIN";
             }else{
-                $user->group = $request->group_id;
+                $user->group_id = $request->group_id;
             }
 
             $user->created_at = now();
             $user->save();
+
+            Log::info('Tambah user baru oleh -'.\Auth::user()->name);
 
             return response()->json(['success' => 'Tambah user berhasil!'], 200);
 
@@ -108,6 +110,8 @@ class UserController extends Controller
             }
 
             $user->save();
+
+            Log::info('Update user oleh -'.\Auth::user()->name);
 
             return response()->json(['success' => 'Update user berhasil!'], 200);
         }
@@ -158,5 +162,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
+
+        Log::info('Hapus user oleh -'.\Auth::user()->name);
     }
 }
