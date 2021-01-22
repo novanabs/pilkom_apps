@@ -73,6 +73,6 @@ class LoginController extends Controller
         }
         
         //JIKA SALAH, MAKA KEMBALI KE LOGIN DAN TAMPILKAN NOTIFIKASI 
-        return redirect()->route('login')->with(['error' => 'userID/Password salah!']);
+        return redirect()->route('login')->with(['error' => 'email atau Password salah, silahkan ulangi lagi!']);
     }
 }

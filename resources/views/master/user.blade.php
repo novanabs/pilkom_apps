@@ -96,7 +96,14 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="mb-2 row">
+                            <label class="col-sm-4 col-form-label col-form-label-sm">No. HP
+                            </label>
+                            <div class="col-sm-8 ">
+                                <input type="text" class="form-control form-control-sm" id="phonenumber"
+                                    name="phonenumber" required>
+                            </div>
+                        </div>
                         <div class="mb-2 row">
                             <label class="col-sm-4 col-form-label col-form-label-sm">Password
                             </label>
