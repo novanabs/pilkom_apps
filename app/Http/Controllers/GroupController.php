@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Room;
+use App\Group;
 use Carbon\Carbon;
 
-class RoomController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,29 +17,31 @@ class RoomController extends Controller
     {
         if(request()->ajax())
         {
-            $table = Room::get(); 
+            $table = Group::get(); 
             
             return datatables()->of($table)
-            // ->addColumn('action', function($data){
+            ->addColumn('action', function($data){
                 
-            //     $button = '<div class="btn-group btn-group-sm" role="group">';
-            //     $button .= '<button id="edit-room" data-id="'.$data->id.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
-            //     if(\Auth::user()->group_id == "SUPER_ADMIN"){
-            //         $button .= '<button id="delete-room"  data-id="'.$data->id.'" class="btn btn-danger btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Del</small></button>';
-            //     }
-            //     $button .= '</div>';
+                $button = '<div class="btn-group btn-group-sm" role="group">';
+                if($data->id != "ADMIN" && $data->id != "SUPER_ADMIN"){
+                    // $button .= '<button id="edit-group" data-id="'.$data->id.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
+                    $button .= '<button id="delete-group"  data-id="'.$data->id.'" class="btn btn-danger btn-sm "><i class="fa fa-sm fa-fw fa-times mr-1"></i><small>Del</small></button>';
+                }else{
+                    $button .= '<button class="btn btn-danger btn-sm invisible"><i class="fa fa-sm fa-fw fa-times mr-1"></i><small>Del</small></button>';
+                }
+                $button .= '</div>';
                 
-            //     return $button;
-            // })
+                return $button;
+            })
             ->editColumn('created_at', function($data){
                 $date = new carbon($data->created_at);
                 return $date->format('Y-m-d');
             })
-            // ->rawColumns(['action'])
+            ->rawColumns(['action'])
             ->make(true);
         }
         
-        return view('master.room');
+        return view('system.group');
     }
 
     /**
@@ -62,25 +64,23 @@ class RoomController extends Controller
     {
         // create baru
         if($request->action == 'add'){
-            Room::insert([
-                'name' => $request->name,
-                'description' => $request->description,
+            Group::insert([
+                'id' => $request->id,
+                'created_by' => \Auth::user()->name,
                 'created_at' => now(),
             ]);
 
-            return response()->json(['success' => 'Tambah Room berhasil!'], 200);
+            return response()->json(['success' => 'Tambah hak akses berhasil!'], 200);
 
         }else{ // update
 
-            $Room =  Room::find($request->id);
+            $Group =  Group::find($request->id);
 
-            $Room->name = $request->name;
-            $Room->description = $request->description;
-            $Room->updated_at = now();
+            $Group->id = $request->id;
+            $Group->updated_at = now();
+            $Group->save();
 
-            $Room->save();
-
-            return response()->json(['success' => 'Update Room berhasil!'], 200);
+            return response()->json(['success' => 'Update hak akses berhasil!'], 200);
         }
     }
 
@@ -103,9 +103,9 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
-        $Room = Room::find($id);
+        $Group = Group::find($id);
 
-        return response()->json($Room, 200);
+        return response()->json($Group, 200);
     }
 
     /**
@@ -128,6 +128,6 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        Room::find($id)->delete();
+        Group::find($id)->delete();
     }
 }

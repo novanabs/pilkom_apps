@@ -72,28 +72,26 @@
                 class="fa fa-bars"></i></button><!-- Navbar Search-->
 
         <!-- Navbar-->
-        <ul class="navbar-nav form-inline ml-auto mr-0 my-2 my-md-0">
-            {{-- CHANGE CABANG --}}
-            {{-- <li class="mr-sm-3 mr-3">
-                <a role="button" id="ganti_cabang">
-                    <i class="fa fa-fw fa-exchange-alt icon-nav-color"></i>
-                </a>
-            </li> --}}
-            {{-- CHANGE PASSWORD --}}
-            <li class="mr-sm-3 mr-3">
-                <a role="button" id="ganti_password">
-                    <i class="fa fa-fw fa-key icon-nav-color"></i>
-                </a>
-            </li>
-            {{-- LOGOUT --}}
-            <li class="mr-0">
-                <a role="submit" href="{{route('logout')}}">
-                    <i class="fa fa-fw fa-sign-out-alt icon-nav-color"></i>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </a>
-            </li>
+        <div class="navbar-nav form-inline ml-auto mr-0 my-2 my-md-0">
+            <div class="row">
+                {{-- CHANGE PASSWORD --}}
+                <div class="pr-3">
+                    <a role="button" id="ganti_password">
+                        <i class="fa fa-fw fa-key icon-nav-color"></i>
+                    </a>
+                </div>
+                {{-- LOGOUT --}}
+                <div class="pr-3">
+                    <a role="submit" href="{{route('logout')}}">
+                        <i class="fa fa-fw fa-sign-out-alt icon-nav-color"></i>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </a>
+                </div>
+            </div>
+
+
             {{-- LAYOUT TEST --}}
             {{-- <li class="nav-item">
                 <a class="nav-link d-block d-sm-none text-light"> XS </a>
@@ -102,7 +100,7 @@
                 <a class="nav-link d-none d-lg-block d-xl-none text-light">Large</a>
                 <a class="nav-link d-none d-xl-block text-light">Xtra Large</a>
             </li> --}}
-        </ul>
+        </div>
     </div>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -202,10 +200,11 @@
                     'icon' => 'fa-cog',
                     'icon_color'=> '#719e63',
                     ])
-                    <div class="collapse" id="collapseSystem" data-parent="#sidenavAccordion">
+                    <div class="{{ Route::is('system*') ? '' : 'collapse'}}" id="collapseSystem"
+                        data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link text-color" href="######">Hak Akses</a>
-                            {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
+                            <a class="nav-link text-color {{ Route::is('system*') ? 'active' : ''}}"
+                                href="{{route('system_group.index')}}">Hak Akses</a>
                         </nav>
                     </div>
 
@@ -251,13 +250,14 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Pilkom ULM 2021</div>
+                    <div class="text-muted">Copyright &copy;
+                        Pilkom ULM 2021
+                    </div>
                     {{-- COPYRIGHT --}}
                     <div>
                         <a href="#">Privacy Policy</a>
                         &middot;
                         <a href="#">Terms &amp; Conditions</a>
-                        <a href="" class="h3"></a>
                     </div>
                 </div>
             </div>

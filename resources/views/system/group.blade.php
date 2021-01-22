@@ -1,8 +1,8 @@
 @extends('layout_admin')
 
-@section('topic','Master')
-@section('short_desc','Ruangan')
-@section('long_desc','Semua ruangan yang terdaftar dalam sistem')
+@section('topic','System')
+@section('short_desc','Hak Akses')
+@section('long_desc','Semua hak akses yang terdaftar dalam sistem')
 
 
 @section('css')
@@ -11,25 +11,24 @@
 
 @section('content')
 <div class="col-12 p-0 p-2 border">
-    <table class="table table-bordered table-sm mt-2 table-responsive-lg" id="room-table" style="width:100%">
+    <table class="table table-bordered table-sm mt-2 table-responsive-lg" id="group-table" style="width:100%">
         <thead class="thead-dark">
             <tr class="text-center">
                 <th style="width:33%;">Nama</th>
-                <th style="width:33%;">Deskripsi</th>
+                <th style="width:33%;">Created by</th>
                 <th style="width:33%;">Created at</th>
-                {{-- <th style="width:0%;">Action</th> --}}
             </tr>
         </thead>
     </table>
 </div>
 
 {{-- MODAL ADD/EDIT USER--}}
-<div class=" modal fade" id="room-modal" aria-hidden="true">
+<div class=" modal fade" id="group-modal" aria-hidden="true">
     <div class="modal-dialog ">
-        <form id="room-form" name="room-modal" class="form-horizontal">
+        <form id="group-form" name="group-modal" class="form-horizontal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Edit Room</h5>
+                    <h5 class="modal-title" id="modal-title">Edit Hak Akses</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -53,16 +52,7 @@
                                 {{-- HIDDEN INPUT for detect ADD or EDIT --}}
                                 <input type="text" class="form-control form-control-sm d-none" id="action"
                                     name="action">
-                                <input type="text" class="form-control form-control-sm d-none" id="id" name="id">
-                                <input type="text" class="form-control form-control-sm" id="name" name="name" required>
-                            </div>
-                        </div>
-                        <div class="mb-2 row">
-                            <label class="col-sm-4 col-form-label col-form-label-sm">Deskripsi
-                            </label>
-                            <div class="col-sm-8 ">
-                                <textarea name="description" id="description" cols="2" rows="2"
-                                    class="form-control form-control-sm"></textarea>
+                                <input type="text" class="form-control form-control-sm" id="id" name="id">
                             </div>
                         </div>
                     </div>
@@ -90,7 +80,7 @@
 <script type="text/javascript">
     $(document).ready( function () {
 
-        $('#web-title').text('Pilkom - Ruangan');
+        $('#web-title').text('Pilkom - Hak Akses');
 
         // XCRF TOKEN for Validation
         $.ajaxSetup({
@@ -100,67 +90,64 @@
         });
 
         // inisialisasi datatable
-        var table = $('#room-table').DataTable({
+        var table = $('#group-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('master_room.index') }}", // Alamat json
+                url: "{{ route('system_group.index') }}", // Alamat json
                 type: 'GET', // tipe input
             },
             dom:"lt<'col-12'<'row d-flex justify-content-between'<'tambah my-auto'><'small'i><'pagination pagination-sm'p>>>",
             columns: [ // load data
-                { data: 'name', name: 'name' },
-                { data: 'description', name: 'description'},
+                { data: 'id', name: 'id' },
+                { data: 'created_by', name: 'created_by'},
                 { data: 'created_at', name: 'created_at' },
-                // {data: 'action', name: 'action', orderable: false,searchable:false},
             ]
         });
 
         // button tambah 
-        $("div.tambah").html('<button type="button" id="tambah-room" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah ruangan</button>');
+        $("div.tambah").html('<button type="button" id="tambah-group" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah hak akses</button>');
     
         // ADD GOL MODAL
-        $('#tambah-room').click(function () {
+        $('#tambah-group').click(function () {
             $(".print-error-msg").css('display','none');
-            $('#room-form').trigger("reset");
-            $('#modal-title').html("Tambahkan Room Baru");
-            $('#room-modal').modal('show');
+            $('#group-form').trigger("reset");
+            $('#modal-title').html("Tambahkan Hak Akses Baru");
+            $('#group-modal').modal('show');
             $('#action').attr('value','add');
         });
         
         // fokus input
 
-        $('#room-modal').on('shown.bs.modal',function(){
-            $('#name').focus();
+        $('#group-modal').on('shown.bs.modal',function(){
+            $('#id').focus();
         });
 
         // EDIT GOL MODAL
-        $('body').on('click', '#edit-room', function () {
+        $('body').on('click', '#edit-group', function () {
             var id = $(this).data('id');
-            $.get('master_room/'+id+'/edit', function (data) {
+            $.get('system_group/'+id+'/edit', function (data) {
                 //alert(JSON.stringify(data.management_cabangs[0].id));
                 $(".print-error-msg").css('display','none');
-                $('#room-form').trigger("reset");
-                $('#modal-title').html("Edit Ruangan");
+                $('#group-form').trigger("reset");
+                $('#modal-title').html("Edit Hak Akses");
                 $('#id').val(data.id);
-                $('#name').val(data.name);
-                $('#description').val(data.description);
                 $('#action').attr('value','edit');
-                $('#room-modal').modal('show');
+                $('#group-modal').modal('show');
                
             })
         });
 
         // DELETE GOL 
-        $('body').on('click', '#delete-room', function () {
+        $('body').on('click', '#delete-group', function () {
             var id = $(this).data("id");
             var conf = confirm("Apakah anda yakin ingin menghapus data ini ?");
             if(conf){
                 $.ajax({
                 type: "get",
-                url: "master_room/destroy/"+id,
+                url: "system_group/destroy/"+id,
                 success: function (data) {
-                var oTable = $('#room-table').dataTable(); 
+                var oTable = $('#group-table').dataTable(); 
                 oTable.fnDraw(false);
                 },
                 error: function (data) {
@@ -172,24 +159,24 @@
     });
  
     // STORE GOL
-    if ($("#room-form").length > 0) {
-        $("#room-form").validate({
+    if ($("#group-form").length > 0) {
+        $("#group-form").validate({
             submitHandler: function(form) {
             $.ajax({
-                data: $('#room-form').serialize(),
-                url: "{{ route('master_room.store') }}",
+                data: $('#group-form').serialize(),
+                url: "{{ route('system_group.store') }}",
                 type: "POST",
                 success: function (data) {
                     // alert(JSON.stringify(data));
                     if(data.error){ // jika id sudah ada
                         printErrorMsg(data.error);
-                    }else{ // store room baru
+                    }else{ // store group baru
                         $('#alert').css('display','block');
                         $('div.flash-message').html(data.success);
-                        $('#room-modal').trigger("reset");
-                        $('#room-modal').modal('hide');
+                        $('#group-modal').trigger("reset");
+                        $('#group-modal').modal('hide');
                         $('#btn-save');
-                        var oTable = $('#room-table').dataTable();
+                        var oTable = $('#group-table').dataTable();
                         oTable.fnDraw(false);
                     }
                 },

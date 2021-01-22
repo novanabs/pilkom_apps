@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>pilkommedia.org</title>
+    <title>Pilkom App</title>
     <link rel="stylesheet" href="/datatable/dataTables.bootstrap4.css">
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous">
@@ -46,8 +46,8 @@
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             border-radius: 5px;
             /* background-color: #20B2AA; */
             background-repeat: no-repeat;
