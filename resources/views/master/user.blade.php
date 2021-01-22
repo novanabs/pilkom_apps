@@ -94,8 +94,8 @@
                         <div class="mb-2 row">
                             <label class="col-sm-4 col-form-label col-form-label-sm"> Hak Akses </label>
                             <div class="col-sm-8 ">
-                                <select name="group_id" id="group_id" class="form-control form-control-sm" required>
-                                    <option disabled>-</option>
+                                <select name="group_id" id="group_id" class="form-control form-control-sm"
+                                    @if(\Auth::user()->group_id == "SUPER_ADMIN") required @else disabled @endif>
                                     @foreach($groups as $item)
                                     <option value="{{$item->id}}">{{$item->id}}</option>
                                     @endforeach

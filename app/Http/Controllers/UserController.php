@@ -62,14 +62,21 @@ class UserController extends Controller
     {
         // create baru
         if($request->action == 'add'){
-            User::insert([
-                'email' => $request->email,
-                'name' => $request->name,
-                'password' => Hash::make($request->password),
-                'phonenumber' => $request->phonenumber,
-                'group_id' => $request->group_id,
-                'created_at' => now(),
-            ]);
+
+            $user = new User;
+            $user->email = $request->email;
+            $user->name = $request->name;
+            $user->password = Hash::make($request->password);
+            $user->phonenumber = $request->phonenumber;
+            
+            if(\Auth::user()->group_id != "SUPER_ADMIN"){
+                $user->group_id = "ADMIN";
+            }else{
+                $user->group = $request->group_id;
+            }
+
+            $user->created_at = now();
+            $user->save();
 
             return response()->json(['success' => 'Tambah user berhasil!'], 200);
 
@@ -80,7 +87,11 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->address = $request->address;
             $user->phonenumber = $request->phonenumber;
-            $user->group_id = $request->group_id;
+            
+            if(\Auth::user()->group_id == "SUPER_ADMIN"){
+                $user->group_id = $request->group_id;
+            }
+            
             $user->updated_at = now();
  
             if($request->password != ""){

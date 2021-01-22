@@ -39,7 +39,7 @@ class UserRequest extends FormRequest
             'email' => 'required',
             'name' => 'required',
             'address' => 'required',
-            'group_id' => 'required',
+            // 'group_id' => 'required',
         ];
     }
 
