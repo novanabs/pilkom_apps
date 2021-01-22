@@ -14,14 +14,14 @@
     <table class="table table-bordered table-sm mt-2 table-responsive-lg" id="user-table" style="width:100%">
         <thead class="thead-dark">
             <tr class="text-center">
-                <th style="width:20%;">Email</th>
-                <th style="width:30%;">Nama</th>
-                <th style="width:30%;">Jabatan</th>
-                <th style="width:30%;">NIP/NIK</th>
-                <th style="width:30%;">NIDN</th>
-                <th style="width:30%;">Alamat</th>
-                <th style="width:10%;">No. Handphone</th>
-                <th style="width:10%;">Hak Akses</th>
+                <th>Email</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th style="white-space: nowrap;">NIP/NIK</th>
+                <th style="white-space: nowrap;">NIDN</th>
+                {{-- <th style="">Alamat</th> --}}
+                <th style="white-space: nowrap;">No. HP</th>
+                <th style="">Hak Akses</th>
                 <th style="width:0%;">Action</th>
             </tr>
         </thead>
@@ -86,21 +86,17 @@
                             </div>
                         </div>
                         <div class="mb-2 row">
-                            <label class="col-sm-4 col-form-label col-form-label-sm">Jabatan
-                            </label>
+                            <label class="col-sm-4 col-form-label col-form-label-sm">Jabatan</label>
                             <div class="col-sm-8 ">
-                                <input type="text" class="form-control form-control-sm" id="job_title" name="job_title"
-                                    required>
+                                <select name="job_title_id" id="job_title_id" class="form-control form-control-sm"
+                                    @if(\Auth::user()->group_id == "SUPER_ADMIN") required @else disabled @endif>
+                                    @foreach($job_titles as $item)
+                                    <option value="{{$item->id}}">{{$item->id}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="mb-2 row">
-                            <label class="col-sm-4 col-form-label col-form-label-sm">Alamat
-                            </label>
-                            <div class="col-sm-8 ">
-                                <textarea name="address" id="address" cols="5" rows="5"
-                                    class="form-control form-control-sm"></textarea>
-                            </div>
-                        </div>
+
                         <div class="mb-2 row">
                             <label class="col-sm-4 col-form-label col-form-label-sm">Password
                             </label>
@@ -171,10 +167,10 @@
             columns: [ // load data
             { data: 'email', name: 'email'},
                 { data: 'name', name: 'name' },
-                { data: 'job_titles.name', name: 'job_titles.name' },
+                { data: 'job_titles.id', name: 'job_titles.id' },
                 { data: 'NIP_NIK', name: 'NIP_NIK' },
                 { data: 'NIDN', name: 'NIDN' },
-                { data: 'address', name: 'address' },
+                // { data: 'address', name: 'address' },
                 { data: 'phonenumber', name: 'phonenumber' }, 
                 { data: 'group_id', name: 'group_id' },
                 {data: 'action', name: 'action', orderable: false,searchable:false},

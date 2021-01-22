@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Group;
 use App\User;
+use App\Job_title;
 use App\Http\Requests\UserRequest;
 use Hash,Log;
+
 
 class UserController extends Controller
 {
@@ -43,8 +45,9 @@ class UserController extends Controller
         }
 
         $groups = Group::all();
+        $job_titles = Job_title::all();
         
-        return view('master.user',compact(['groups']));
+        return view('master.user',compact(['groups','job_titles']));
     }
 
     /**
@@ -76,9 +79,14 @@ class UserController extends Controller
             
             if(\Auth::user()->group_id != "SUPER_ADMIN"){
                 $user->group_id = "ADMIN";
+                $user->job_title_id = "Dosen";
             }else{
                 $user->group_id = $request->group_id;
+                $user->job_title_id = $request->job_title_id;
             }
+
+            $user->NIP_NIK = $request->NIP_NIK;
+            $user->NIDN = $request->NIDN;
 
             $user->created_at = now();
             $user->save();
@@ -97,8 +105,10 @@ class UserController extends Controller
             
             if(\Auth::user()->group_id == "SUPER_ADMIN"){
                 $user->group_id = $request->group_id;
+                $user->job_title_id = $request->job_title_id;
             }
-            
+            $user->NIP_NIK = $request->NIP_NIK;
+            $user->NIDN = $request->NIDN;
             $user->updated_at = now();
  
             if($request->password != ""){

@@ -15,7 +15,6 @@ class CreateJobTitlesTable extends Migration
     {
         Schema::create('job_titles', function (Blueprint $table) {
             $table->string('id',20)->primary();
-            $table->string('name',45);
             $table->timestamps();
         });
     }
