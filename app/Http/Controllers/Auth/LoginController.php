@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
+use Auth,Log;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -42,6 +42,7 @@ class LoginController extends Controller
 
     public function logout(){
     
+        Log::info('Logout oleh - '.\Auth::user()->name);
         session()->flush();
 
         Auth::logout();
@@ -67,6 +68,7 @@ class LoginController extends Controller
         //LAKUKAN LOGIN
         if (Auth::attempt($login)) {
 
+            Log::info('Login oleh - '.\Auth::user()->name);
             //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
             return redirect()->route('home');
             
