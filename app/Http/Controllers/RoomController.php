@@ -18,7 +18,7 @@ class RoomController extends Controller
     {
         if(request()->ajax())
         {
-            $table = Room::get(); 
+            $table = Room::query();
             
             return datatables()->of($table)
             // ->addColumn('action', function($data){

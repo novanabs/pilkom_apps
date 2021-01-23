@@ -17,7 +17,7 @@ class GroupController extends Controller
     {
         if(request()->ajax())
         {
-            $table = Group::get(); 
+            $table = Group::query(); 
             
             return datatables()->of($table)
             ->addColumn('action', function($data){

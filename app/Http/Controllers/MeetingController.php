@@ -21,7 +21,7 @@ class MeetingController extends Controller
     {
         if(request()->ajax())
         {
-            $table = Meeting::with(['notulen','rooms'])->get(); 
+            $table = Meeting::with(['notulen','rooms'])->query(); 
             
             return datatables()->of($table)
             ->addColumn('action', function($data){

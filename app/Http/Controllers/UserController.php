@@ -21,7 +21,7 @@ class UserController extends Controller
     {   
         if(request()->ajax())
         {
-            $table = User::with(['job_titles'])->get(); 
+            $table = User::with(['job_titles'])->query();
             
             return datatables()->of($table)
             ->addColumn('action', function($data){
