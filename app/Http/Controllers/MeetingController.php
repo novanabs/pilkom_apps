@@ -90,7 +90,7 @@ class MeetingController extends Controller
 
         }
 
-        Log::info('Tambah catatan rapat oleh -'.\Auth::user()->name);
+        Log::info('Tambah catatan rapat oleh - '.\Auth::user()->name);
         
         return redirect()->route('app_meeting.index')->with('success','Data rapat baru berhasil ditambahkan!');
     }
@@ -104,6 +104,8 @@ class MeetingController extends Controller
     public function show($id)
     {
         $meeting = Meeting::with(['participants','notulen','rooms'])->find($id);
+
+        Log::info('print catatan meeting id: '.$meeting->id.' oleh - '.\Auth::user()->name);
 
         $pdf = PDF::loadview('print.meeting_minute',['meeting'=>$meeting]);
         // $pdf->download('laporan-agenda-rapat-'.$meeting->short_date.'-pdf');
@@ -170,7 +172,7 @@ class MeetingController extends Controller
             }
         }
 
-        Log::info('Update catatan rapat oleh -'.\Auth::user()->name);
+        Log::info('Update catatan rapat oleh - '.\Auth::user()->name);
         
         return redirect()->route('app_meeting.index');
     }
@@ -183,7 +185,7 @@ class MeetingController extends Controller
      */
     public function destroy($id)
     {
-        Log::info('Hapus catatan rapat oleh -'.\Auth::user()->name);
+        Log::info('Hapus catatan rapat oleh - '.\Auth::user()->name);
     }
 
     /** Additional funtion */

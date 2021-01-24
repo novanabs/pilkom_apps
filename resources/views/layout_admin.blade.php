@@ -9,6 +9,7 @@
     <meta name="description" content="PILKOM app" />
     <meta name="author" content="novanabs@gmail.com" />
     <title id="web-title">Management Pilkom</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     {{-- MAIN CSS AND JS: BOOTSTRAP, FONTAWESOME, STYLE.CSS dan SIBUHAR.CSS --}}
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}

@@ -69,7 +69,7 @@ class RoomController extends Controller
                 'created_at' => now(),
             ]);
 
-            Log::info('Tambah ruangan oleh -'.\Auth::user()->name);
+            Log::info('Tambah ruangan oleh - '.\Auth::user()->name);
 
             return response()->json(['success' => 'Tambah Room berhasil!'], 200);
 
@@ -83,7 +83,7 @@ class RoomController extends Controller
 
             $Room->save();
 
-            Log::info('Update ruangan oleh -'.\Auth::user()->name);
+            Log::info('Update ruangan oleh - '.\Auth::user()->name);
 
             return response()->json(['success' => 'Update Room berhasil!'], 200);
         }
@@ -135,6 +135,6 @@ class RoomController extends Controller
     {
         Room::find($id)->delete();
 
-        Log::info('Hapus ruangan oleh -'.\Auth::user()->name);
+        Log::info('Hapus ruangan oleh - '.\Auth::user()->name);
     }
 }

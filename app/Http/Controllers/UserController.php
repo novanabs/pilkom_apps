@@ -91,7 +91,7 @@ class UserController extends Controller
             $user->created_at = now();
             $user->save();
 
-            Log::info('Tambah user baru oleh -'.\Auth::user()->name);
+            Log::info('Tambah user baru oleh - '.\Auth::user()->name);
 
             return response()->json(['success' => 'Tambah user berhasil!'], 200);
 
@@ -121,7 +121,7 @@ class UserController extends Controller
 
             $user->save();
 
-            Log::info('Update user oleh -'.\Auth::user()->name);
+            Log::info('Update user oleh - '.\Auth::user()->name);
 
             return response()->json(['success' => 'Update user berhasil!'], 200);
         }
@@ -173,6 +173,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
 
-        Log::info('Hapus user oleh -'.\Auth::user()->name);
+        Log::info('Hapus user oleh - '.\Auth::user()->name);
     }
 }
