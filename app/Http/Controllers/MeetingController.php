@@ -185,6 +185,8 @@ class MeetingController extends Controller
      */
     public function destroy($id)
     {
+        Meeting::where('id',$id)->delete();
+        
         Log::info('Hapus catatan rapat oleh - '.\Auth::user()->name);
     }
 
