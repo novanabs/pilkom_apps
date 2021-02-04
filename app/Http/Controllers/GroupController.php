@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Group;
 use Carbon\Carbon;
+use Log;
 
 class GroupController extends Controller
 {

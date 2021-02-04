@@ -8,7 +8,7 @@ use App\User;
 use App\Room;
 use Carbon\Carbon;
 use App\Http\Requests\CreateMeetingRequest;
-use DB,PDF;
+use DB,PDF,Log;
 
 class MeetingController extends Controller
 {
