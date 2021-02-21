@@ -68,6 +68,7 @@
             order: [[2, 'DESC']], // sorting
             rowCallback: function( row, data ) {
                 $('td:eq(2)', row).html("<div class='text-center'>"+data.meeting_date+"</div>");
+                $('td:eq(3)', row).html("<div class='text-center'>"+data.time+"</div>");
                 $('td:eq(4)', row).html("<div class='text-center'>"+data.rooms.name+"</div>");
             }
         });
