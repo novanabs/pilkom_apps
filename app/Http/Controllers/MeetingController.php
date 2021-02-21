@@ -36,6 +36,10 @@ class MeetingController extends Controller
                 
                 return $button;
             })
+            ->editColumn('meeting_date', function($data){
+                $date = new carbon($data->meeting_date);
+                return $date->format('Y-m-d');
+            })
             ->rawColumns(['action'])
             ->make(true);
         }
