@@ -13,7 +13,7 @@ class Meeting extends Model
      * @var array
      */
     protected $fillable = [
-        'id','notulen_id', 'room_id','meeting_date','duration','notes','created_at','updated_at'
+        'id','notulen_id', 'room_id','meeting_date','time','notes','created_at','updated_at','topic'
     ];
     
     // users/ participants has many participants

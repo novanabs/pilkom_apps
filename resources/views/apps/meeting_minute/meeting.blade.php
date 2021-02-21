@@ -17,7 +17,7 @@
                 <th style="width:30%;">Topic</th>
                 <th style="width:20%;">Notulen</th>
                 <th style="width:20%;">Tanggal Rapat</th>
-                <th style="width:15%;">Durasi</th>
+                <th style="width:15%;">Waktu</th>
                 <th style="width:15%;">Ruangan</th>
                 <th style="width:0%;">Action</th>
             </tr>
@@ -27,7 +27,7 @@
                 <th>Topic</th>
                 <th>Notulen</th>
                 <th>Tanggal Rapat</th>
-                <th>Durasi</th>
+                <th>Waktu</th>
                 <th>Ruangan</th>
             </tr>
         </tfoot>
@@ -61,14 +61,13 @@
                 { data: 'topic', name: 'topic'},
                 { data: 'notulen.name', name: 'notulen.name' },
                 { data: 'meeting_date', name: 'meeting_date' },
-                { data: 'duration', name: 'duration' }, 
+                { data: 'time', name: 'time' }, 
                 { data: 'rooms.name', name: 'rooms.name' },
                 {data: 'action', name: 'action', orderable: false,searchable:false},
             ],
             order: [[2, 'DESC']], // sorting
             rowCallback: function( row, data ) {
                 $('td:eq(2)', row).html("<div class='text-center'>"+data.meeting_date+"</div>");
-                $('td:eq(3)', row).html("<div class='text-center'>"+data.duration+" Menit</div>");
                 $('td:eq(4)', row).html("<div class='text-center'>"+data.rooms.name+"</div>");
             }
         });

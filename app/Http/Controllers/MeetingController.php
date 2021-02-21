@@ -50,11 +50,10 @@ class MeetingController extends Controller
      */
     public function create()
     {
-        $time = $this->create_timepicker();
         $users = User::orderBy('name')->get();
         $rooms = Room::get();
 
-        return view('apps.meeting_minute.new_meeting',compact(['users','rooms','time']));
+        return view('apps.meeting_minute.new_meeting',compact(['users','rooms']));
     }
 
     /**
@@ -65,19 +64,11 @@ class MeetingController extends Controller
      */
     public function store(CreateMeetingRequest $request)
     {
-        // dd(strlen($request->notes));
-        $meeting_date = new Carbon($request->meeting_date.' '.$request->jam);
-        Meeting::insert([
-            'notulen_id' => $request->notulen_id,
-            'room_id' => $request->room_id,
-            'meeting_date' => $meeting_date,
-            'duration' => $request->duration,
-            'notes' => $request->notes,
-            'topic' => $request->topic
-        ]);
+        // dd($request->all());
+        Meeting::create($request->all());
 
         foreach($request->participant as $participant){
-            $data_meeting = Meeting::where('meeting_date',$meeting_date)
+            $data_meeting = Meeting::where('meeting_date',$request->meeting_date)
             ->where('notulen_id',$request->notulen_id)->first();
 
             if($data_meeting){
@@ -103,11 +94,14 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
-        $meeting = Meeting::with(['participants','notulen','rooms'])->find($id);
+        $meeting = Meeting::with(['participants' => function ($query){
+            return $query->orderByRaw("FIELD(job_title_id,'Kaprodi','Sekprodi','Dosen','Operator') ASC");
+        },'notulen','rooms'])->find($id);
+        $kaprodi = User::where('job_title_id','kaprodi')->first();
 
         Log::info('print catatan meeting id: '.$meeting->id.' oleh - '.\Auth::user()->name);
 
-        $pdf = PDF::loadview('print.meeting_minute',['meeting'=>$meeting]);
+        $pdf = PDF::loadview('print.meeting_minute',['meeting'=>$meeting, 'kaprodi' => $kaprodi]);
         // $pdf->download('laporan-agenda-rapat-'.$meeting->short_date.'-pdf');
     	return $pdf->stream();
         
@@ -123,16 +117,15 @@ class MeetingController extends Controller
     {
         $users = User::orderBy('name')->get();
         $rooms = Room::get();
-        $time = $this->create_timepicker();
-        $data_meeting = Meeting::with('participants')->find($id);
+        $data_meeting = Meeting::with(['participants' => function($query){
+            return $query->orderByRaw("FIELD(job_title_id,'Kaprodi','Sekprodi','Dosen','Operator') ASC");
+        }])->find($id);
         $participants = [];
-
         foreach($data_meeting->participants as $item){
             array_push($participants, $item->id);
         }
-        // dd($data_meeting->hour_time);
         
-        return view('apps.meeting_minute.edit_meeting',compact(['users','rooms','data_meeting','time','participants']));
+        return view('apps.meeting_minute.edit_meeting',compact(['users','rooms','data_meeting','participants']));
     }
 
     /**
@@ -145,15 +138,15 @@ class MeetingController extends Controller
     public function update(CreateMeetingRequest $request, $id)
     {
 
-        $meeting = Meeting::find($id);
-
-        $meeting->topic = $request->topic;
-        $meeting->notulen_id = $request->notulen_id;
-        $meeting->meeting_date = new Carbon($request->meeting_date.' '.$request->jam);
-        $meeting->duration = $request->duration;
-        $meeting->room_id = $request->room_id;
-        $meeting->notes = $request->notes;
-        $meeting->save();
+        $meeting = Meeting::where('id',$id)
+        ->update([
+            'topic' => $request->topic,
+            'notulen_id' => $request->notulen_id,
+            'meeting_date' => $request->meeting_date,
+            'time' => $request->time,
+            'room_id' => $request->room_id,
+            'notes' => $request->notes
+        ]);
 
         $meeting_participants = Meeting::with(['participants'])->find($id);
 

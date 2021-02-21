@@ -62,23 +62,17 @@
                 </div>
                 <div class=" mb-2 row">
                     <label class="col-sm-3 col-form-label col-form-label-sm font-weight-bold">Jam</label>
-                    <div class="col-sm-3">
-                        <select name="jam" id="jam" class="form-control form-control-sm pr-0" required>
-                            @foreach ($time as $item)
-                            @if ($data_meeting->hour_time == $item)
-                            <option value="{{$item}}" selected>{{$item}}</option>
-                            @else
-                            <option value="{{$item}}">{{$item}}</option>
-                            @endif
-                            @endforeach
-                        </select>
+                    <div class="col-sm-7 pr-0">
+                        <input type="text" class="form-control form-control-sm" id="time" name="time" required autofocus
+                            value="{{ $data_meeting->time }}">
                     </div>
-                    <label class="col-sm-2 col-form-label col-form-label-sm font-weight-bold">Durasi</label>
-                    <div class="col-sm-2 pr-0">
-                        <input type="text" maxlength="3" class="form-control form-control-sm" name="duration"
-                            id="duration" value="{{ $data_meeting->duration }}" required>
+                    <div class=" col-sm-2">
+                        <a role="button" class="btn btn-dark btn-sm btn-block rounded-circle text-light" tabindex="0"
+                            data-placement="top" data-toggle="popover" data-trigger="focus"
+                            title="Tips mengisi waktu rapat" data-content="08.00 - 10.00 atau 08.00 - Selesai">
+                            <i class=" fa fa-question"></i>
+                        </a>
                     </div>
-                    <label class=" col-sm-1 col-form-label col-form-label-sm font-weight-bold">Menit</label>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-2">
@@ -87,7 +81,7 @@
                     <div class="col-sm-9">
                         <select id="room_id" name="room_id" class="form-control form-control-sm" required>
                             @foreach ($rooms as $room)
-                            @if ($data_meeting->room_id == $item)
+                            @if ($data_meeting->room_id == $room->id)
                             <option value="{{$room->id}}" selected>{{$room->name}}</option>
                             @else
                             <option value="{{$room->id}}">{{$room->name}}</option>

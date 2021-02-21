@@ -218,7 +218,7 @@
                 $('#email').val(data.email);
                 $('#name').val(data.name);
                 $('#id').val(data.id);
-                $('#job_title').val(data.job_title);
+                $('#job_title_id').val(data.job_title_id);
                 $('#NIP_NIK').val(data.NIP_NIK);
                 $('#NIDN').val(data.NIDN);
                 $('#address').val(data.address);
