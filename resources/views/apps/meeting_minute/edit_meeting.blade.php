@@ -1,7 +1,7 @@
 @extends('layout_admin')
 
-@section('topic','App')
-@section('short_desc','Edit Meeting Minute')
+@section('topic','Aplikasi')
+@section('short_desc','Edit catatan rapat')
 @section('long_desc','Mengubah catatan agenda rapat')
 
 

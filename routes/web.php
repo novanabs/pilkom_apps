@@ -42,10 +42,12 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('app_meeting', 'MeetingController'); // sistem_user
     Route::get('app_meeting/destroy/{id}', 'MeetingController@destroy')->name('app_meeting.destroy'); // delete user data
 
-     // SYSTEM GROUP
-     Route::resource('system_group', 'GroupController'); // sistem_user
-     Route::get('system_group/destroy/{id}', 'GroupController@destroy')->name('system_group.destroy'); // delete user data
+    // SYSTEM GROUP
+    Route::resource('system_group', 'GroupController'); // sistem_user
+    Route::get('system_group/destroy/{id}', 'GroupController@destroy')->name('system_group.destroy'); // delete user data
 
+    // ABOUT
+    Route::view('/about', 'about')->name('about');
      
     Route::get('/home', 'HomeController@index')->name('home');
 });

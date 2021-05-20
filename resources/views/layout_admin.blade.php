@@ -68,7 +68,7 @@
 
     {{-- CLASS TAMBAHAN ASAL : navbar-dark bg-dark --}}
     <div class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="#######">Management Pilkom</a>
+        <a class="navbar-brand" href="#######">Manajemen Pilkom</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fa fa-bars"></i></button><!-- Navbar Search-->
 
@@ -176,7 +176,7 @@
                         <div class="{{ Route::is('master*') ? '' : 'collapse'}}" id="collapseMaster"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link text-color" href="{{route('master_user.index')}}">User</a>
+                                <a class="nav-link text-color" href="{{route('master_user.index')}}">Pengguna</a>
                                 <a class="nav-link text-color" href="{{route('master_room.index')}}">Ruangan</a>
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
@@ -184,7 +184,7 @@
 
                         {{-- APPS --}}
                         @include('partial.h_dropdown_title',[
-                        'title' => 'Apps',
+                        'title' => 'Aplikasi',
                         'data_target'=>'#collapseApps',
                         'aria_controls'=>'collapseApps',
                         'icon' => 'fa-rocket',
@@ -194,14 +194,14 @@
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
-                                    href="{{route('app_meeting.index')}}">Meeting Minute</a>
+                                    href="{{route('app_meeting.index')}}">Catatan Rapat</a>
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>
 
                         {{-- SYSTEM --}}
                         @include('partial.h_dropdown_title',[
-                        'title' => 'System',
+                        'title' => 'Sistem',
                         'data_target'=>'#collapseSystem',
                         'aria_controls'=>'collapseSystem',
                         'icon' => 'fa-cog',
@@ -216,14 +216,14 @@
                         </div>
 
                         {{-- INFO SOFTWARE --}}
-                        <a class="nav-link text-color">
+                        <a href="{{route('about')}}" class="nav-link text-color">
                             <div class="col-1 pl-0">
                                 <div class="sb-nav-link-icon">
                                     <i class="fas fa-info arrow-icon" style="color:steelblue;"></i>
                                 </div>
                             </div>
                             <div class="col-11">
-                                About
+                                Tentang
                             </div>
                         </a>
                     </div>
