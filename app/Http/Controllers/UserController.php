@@ -30,6 +30,8 @@ class UserController extends Controller
                
                 if(\Auth::user()->name == $data->name && \Auth::user()->group_id == "ADMIN"){ // hanya bisa mengedit dirinya sendiri
                     $button = '<button id="edit-user" data-id="'.$data->id.'" class="btn btn-block btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
+                }else if(\Auth::user()->name != $data->name && \Auth::user()->group_id == "ADMIN"){
+                    $button = '<button disabled class="btn btn-block btn-secondary btn-sm"><small><i class="fa fa-sm fa-hand-paper mr-2"></i>Read Only</small></button>';
                 }
                 
                 if(\Auth::user()->group_id == "SUPER_ADMIN"){
