@@ -6,12 +6,17 @@
 <style>
     table,
     tr,
-    td {
+    td,
+    th {
         border: 1px solid black;
     }
 
+    table {
+        width: 100%;
+    }
+
     hr {
-        padding: 6px;
+        padding: 2px;
         margin: 0px;
     }
 </style>
@@ -25,12 +30,12 @@
         <div class="col-md-6 col-sm-12">
             <div class="row p-1 pt-1">
                 <div class="col-12 px-0">
-                    <table class="table table-sm">
-                        <thead class="thead-dark">
+                    <table class="" cellpadding="2" cellspacing="0">
+                        <thead class="bg-dark text-white font">
                             <tr>
-                                <th>Nama</th>
-                                <th class="text-center">Jmlh Kehadiran</th>
-                                <th>Jmlh Notulen</th>
+                                <td>Nama</td>
+                                <td class="text-center">Jmlh Kehadiran</td>
+                                <td>Jmlh Notulen</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,7 +61,9 @@
                     <div class="row">
                         @foreach ($meeting as $item)
                         <div class="col-12">
-                            {{$item->shortDateIndonesia}}
+                            <span style="font-size: 12px;">
+                                {{$item->shortDateIndonesia}}
+                            </span>
                             <br>
                             <b>{{$item->topic}}</b>
                             <hr>
@@ -70,7 +77,7 @@
         <div class="col-12">
             <div class="row p-1">
                 <div class="col-12 bg-dark py-1 rounded-top">
-                    <p class="text-light mb-0 small">Chart</p>
+                    <p class="text-light mb-0 small">Chart jumlah rapat berbulan dalam rentang 5 bulan terakhir</p>
                 </div>
                 <div class="col-12 rounded-bottom bg-body-column h-100 p-3">
                     <!-- Chart's container -->
@@ -108,9 +115,13 @@
         el: '#chart',
         url: "@chart('meeting_minute_chart')",
         hooks: new ChartisanHooks()
-        .legend()
-        .colors('tomato')
+        // .title('This is a sample chart using chartisan!')
+        .legend({ position: 'bottom' })
+        .colors(['#ECC94B'])
         .tooltip()
+        .datasets([{ type: 'line', fill: false }, 'bar'])
+        
+        
 
         });
 </script>

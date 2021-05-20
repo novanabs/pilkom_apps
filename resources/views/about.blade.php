@@ -35,6 +35,7 @@
                         <li>Borang Akreditasi ISK</li>
                         <li>Borang Akreditasi IAPT 4.0</li>
                         <li>Tracer Study Prodi</li>
+                        <li>Daftar Kegiatan Prodi</li>
                         <li>Kerjasama Prodi</li>
                         <li>Sistem Informasi TA (Domain Terpisah)</li>
                     </ol>
