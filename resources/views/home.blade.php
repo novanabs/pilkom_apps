@@ -6,9 +6,17 @@
 <style>
     table,
     tr,
+    td {
+        border: none;
+    }
+
+    table,
+    tr,
     td,
     th {
-        border: 1px solid black;
+        /* border: 1px solid black; */
+        border-bottom: 1px solid black;
+        padding: 1px 10px;
     }
 
     table {
@@ -16,7 +24,7 @@
     }
 
     hr {
-        padding: 2px;
+        padding: 0px;
         margin: 0px;
     }
 </style>
@@ -65,7 +73,7 @@
                                 {{$item->shortDateIndonesia}}
                             </span>
                             <br>
-                            <b>{{$item->topic}}</b>
+                            <span><b>{{$item->topic}}</b></span>
                             <hr>
                         </div>
                         @endforeach
