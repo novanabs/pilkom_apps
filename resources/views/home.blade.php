@@ -4,21 +4,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 
 <style>
-    .box-height {
-        height: 80px;
+    table,
+    tr,
+    td {
+        border: 1px solid black;
     }
 
-    table.dataTable td.focus {
-        outline: none;
-    }
-
-    table.dataTable tbody td.focus {
-        box-shadow: none;
-    }
-
-    #table_cabang tbody tr.selected {
-        color: black;
-        background-color: #eeeeee;
+    hr {
+        padding: 6px;
+        margin: 0px;
     }
 </style>
 @endsection
@@ -28,87 +22,59 @@
 <div id="dashboard">
     <div class="row">
         {{-- SPACE 1 --}}
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 ">
-            <div class="row px-1 pt-1">
-                <div class="col-12 text-center bg-dark rounded-top test">
-                    <p class="mb-0 py-1 small text-light">Space 1</p>
-                </div>
-                <div
-                    class="col-12 bg-body-column box-height d-flex align-items-center justify-content-center rounded-bottom">
-                    <p class="mt-2 h3">1</p>
+        <div class="col-md-6 col-sm-12">
+            <div class="row p-1 pt-1">
+                <div class="col-12 px-0">
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Nama</th>
+                                <th class="text-center">Jmlh Kehadiran</th>
+                                <th>Jmlh Notulen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($user as $orang)
+                            <tr>
+                                <td>{{ $orang->name }} </td>
+                                <td class="text-center">{{ $orang->meetings()->count() }} </td>
+                                <td class="text-center">{{ $orang->notulen()->count() }} </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         {{-- SPACE 2 --}}
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+        <div class="col-md-6 col-sm-12">
             <div class="row px-1 pt-1">
                 <div class="col-12 text-center bg-dark rounded-top">
-                    <p class="mb-0 py-1 small text-light">Space 2</p>
+                    <p class="mb-0 py-1 text-light">Topik Rapat Terbaru</p>
                 </div>
-                <div
-                    class="col-12 bg-body-column box-height d-flex align-items-center justify-content-center rounded-bottom">
-                    <p class=" mt-2 h3">2</p>
-                </div>
-            </div>
-        </div>
-        {{-- SPACE 3 --}}
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 ">
-            <div class="row px-1 pt-1">
-                <div class="col-12 text-center bg-dark rounded-top test">
-                    <p class="mb-0 py-1 small text-light">Space 3</p>
-                </div>
-                <div
-                    class="col-12 bg-body-column box-height d-flex align-items-center justify-content-center rounded-bottom">
-                    <p class="mt-2 h3">3</p>
+                <div class="col-12  box-height d-flex align-items-center justify-content-center rounded-bottom">
+                    <div class="row">
+                        @foreach ($meeting as $item)
+                        <div class="col-12">
+                            {{$item->shortDateIndonesia}}
+                            <br>
+                            <b>{{$item->topic}}</b>
+                            <hr>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-        {{-- SPACE 4 --}}
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <div class="row px-1 pt-1">
-                <div class="col-12 text-center bg-dark rounded-top">
-                    <p class="mb-0 py-1 small text-light">Space 4</p>
-                </div>
-                <div
-                    class="col-12 bg-body-column box-height d-flex align-items-center justify-content-center rounded-bottom">
-                    <p class=" mt-2 h3">4</p>
-                </div>
-            </div>
-        </div>
-        {{-- SPACE 5 --}}
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 ">
-            <div class="row px-1 pt-1">
-                <div class="col-12 text-center bg-dark rounded-top test">
-                    <p class="mb-0 py-1 small text-light">Space 5</p>
-                </div>
-                <div
-                    class="col-12 bg-body-column box-height d-flex align-items-center justify-content-center rounded-bottom">
-                    <p class="mt-2 h3">5</p>
-                </div>
-            </div>
-        </div>
-        {{-- SPACE 6 --}}
-        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <div class="row px-1 pt-1">
-                <div class="col-12 text-center bg-dark rounded-top">
-                    <p class="mb-0 py-1 small text-light">Space 6</p>
-                </div>
-                <div
-                    class="col-12 bg-body-column box-height d-flex align-items-center justify-content-center rounded-bottom">
-                    <p class=" mt-2 h3">6</p>
-                </div>
-            </div>
-        </div>
-
         {{-- GAMBAR CHART  --}}
-        <div class="col-12 mt-2">
-            <div class="row p-1" style="height: 500px;">
+        <div class="col-12">
+            <div class="row p-1">
                 <div class="col-12 bg-dark py-1 rounded-top">
                     <p class="text-light mb-0 small">Chart</p>
                 </div>
-                <div class="col-12 rounded-bottom bg-body-column bg-secondary h-100">
-                    {{-- ISI CHART DISINI --}}
-
+                <div class="col-12 rounded-bottom bg-body-column h-100 p-3">
+                    <!-- Chart's container -->
+                    <div id="chart" style="height: 300px; background-color:white;"></div>
 
                 </div>
             </div>
@@ -118,8 +84,6 @@
 @endsection
 
 @section('js')
-{{-- CHART JS --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -132,5 +96,22 @@
     });
   });
   
+</script>
+{{-- LARAVEL CHART  JS--}}
+<!-- Charting library -->
+<script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+<!-- Chartisan -->
+<script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
+<!-- Your application script -->
+<script>
+    const chart = new Chartisan({
+        el: '#chart',
+        url: "@chart('meeting_minute_chart')",
+        hooks: new ChartisanHooks()
+        .legend()
+        .colors('tomato')
+        .tooltip()
+
+        });
 </script>
 @endsection

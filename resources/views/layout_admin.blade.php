@@ -108,6 +108,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 {{-- CHANGE : add->shadow --}}
                 <div class="sb-sidenav-menu shadow">
+                    {{-- USER INFO --}}
                     <div class="nav">
                         <div class="nav-link">
                             <div class="col-12">
@@ -138,132 +139,135 @@
                             </div>
                         </div>
                     </div>
+                    {{-- LINE --}}
                     <div class="offset-1 col-10 offset-1" style="border:1px black solid;">
                         {{-- <meta name="author" content="novanabs@gmail.com" /> --}}
                     </div>
+                    {{-- MENU --}}
                     <div class="nav pt-2">
                         <div class="sb-sidenav-menu-heading pt-2 text-dark pb-0">
                             <div class="text-center h6 font-weight-bold info-color">
                                 Menu
                             </div>
                         </div>
-
+                        <div>
+                            <a href="{{route('home')}}"
+                                class="nav-link text-color {{ Route::is('home*') ? 'active' : ''}}">
+                                <div class=" col-1 pl-0">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-chart-line arrow-icon" style="color:steelblue;"></i>
+                                    </div>
+                                </div>
+                                <div class="col-11">
+                                    Dashboard
+                                </div>
+                            </a>
+                        </div>
                         {{-- DASHBOARD --}}
-                        <a class="nav-link text-color {{ Route::is('home*') ? 'active' : ''}}"">
-                            <div class=" col-1 pl-0">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-chart-line arrow-icon" style="color:steelblue;"></i>
-                            </div>
-                    </div>
-                    <div class="col-11">
-                        Dashboard
-                    </div>
-                    </a>
-                    {{-- MASTER --}}
-                    @include('partial.h_dropdown_title',[
-                    'title' => 'Master',
-                    'data_target'=>'#collapseMaster',
-                    'aria_controls'=>'collapseMaster',
-                    'icon' => 'fa-database',
-                    'icon_color'=> '#e9c93b',
-                    ])
-                    <div class="{{ Route::is('master*') ? '' : 'collapse'}}" id="collapseMaster"
-                        data-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link text-color" href="{{route('master_user.index')}}">User</a>
-                            <a class="nav-link text-color" href="{{route('master_room.index')}}">Ruangan</a>
-                            {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
-                        </nav>
-                    </div>
 
-                    {{-- APPS --}}
-                    @include('partial.h_dropdown_title',[
-                    'title' => 'Apps',
-                    'data_target'=>'#collapseApps',
-                    'aria_controls'=>'collapseApps',
-                    'icon' => 'fa-rocket',
-                    'icon_color'=> '#be3d3d',
-                    ])
-                    <div class="{{ Route::is('app*') ? '' : 'collapse'}}" id="collapseApps"
-                        data-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
-                                href="{{route('app_meeting.index')}}">Meeting Minute</a>
-                            {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
-                        </nav>
-                    </div>
-
-                    {{-- SYSTEM --}}
-                    @include('partial.h_dropdown_title',[
-                    'title' => 'System',
-                    'data_target'=>'#collapseSystem',
-                    'aria_controls'=>'collapseSystem',
-                    'icon' => 'fa-cog',
-                    'icon_color'=> '#719e63',
-                    ])
-                    <div class="{{ Route::is('system*') ? '' : 'collapse'}}" id="collapseSystem"
-                        data-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link text-color {{ Route::is('system*') ? 'active' : ''}}"
-                                href="{{route('system_group.index')}}">Hak Akses</a>
-                        </nav>
-                    </div>
-
-                    {{-- INFO SOFTWARE --}}
-                    <a class="nav-link text-color">
-                        <div class="col-1 pl-0">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-info arrow-icon" style="color:steelblue;"></i>
-                            </div>
+                        {{-- MASTER --}}
+                        @include('partial.h_dropdown_title',[
+                        'title' => 'Master',
+                        'data_target'=>'#collapseMaster',
+                        'aria_controls'=>'collapseMaster',
+                        'icon' => 'fa-database',
+                        'icon_color'=> '#e9c93b',
+                        ])
+                        <div class="{{ Route::is('master*') ? '' : 'collapse'}}" id="collapseMaster"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link text-color" href="{{route('master_user.index')}}">User</a>
+                                <a class="nav-link text-color" href="{{route('master_room.index')}}">Ruangan</a>
+                                {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
+                            </nav>
                         </div>
-                        <div class="col-11">
-                            About
+
+                        {{-- APPS --}}
+                        @include('partial.h_dropdown_title',[
+                        'title' => 'Apps',
+                        'data_target'=>'#collapseApps',
+                        'aria_controls'=>'collapseApps',
+                        'icon' => 'fa-rocket',
+                        'icon_color'=> '#be3d3d',
+                        ])
+                        <div class="{{ Route::is('app*') ? '' : 'collapse'}}" id="collapseApps"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
+                                    href="{{route('app_meeting.index')}}">Meeting Minute</a>
+                                {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
+                            </nav>
                         </div>
-                    </a>
 
+                        {{-- SYSTEM --}}
+                        @include('partial.h_dropdown_title',[
+                        'title' => 'System',
+                        'data_target'=>'#collapseSystem',
+                        'aria_controls'=>'collapseSystem',
+                        'icon' => 'fa-cog',
+                        'icon_color'=> '#719e63',
+                        ])
+                        <div class="{{ Route::is('system*') ? '' : 'collapse'}}" id="collapseSystem"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link text-color {{ Route::is('system*') ? 'active' : ''}}"
+                                    href="{{route('system_group.index')}}">Hak Akses</a>
+                            </nav>
+                        </div>
 
+                        {{-- INFO SOFTWARE --}}
+                        <a class="nav-link text-color">
+                            <div class="col-1 pl-0">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-info arrow-icon" style="color:steelblue;"></i>
+                                </div>
+                            </div>
+                            <div class="col-11">
+                                About
+                            </div>
+                        </a>
+                    </div>
                 </div>
-        </div>
-        {{-- SIDEBAR BOTTOM COLUMN --}}
-        {{-- <div class="sb-sidenav-footer">
+                {{-- SIDEBAR BOTTOM COLUMN --}}
+                {{-- <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
                     Start Bootstrap
                 </div> --}}
-        </nav>
-    </div>
-    <div id="layoutSidenav_content">
-        <main class="bg-content">
-            @yield('content_full')
-            <div class="container-fluid">
-                {{-- BASIC --}}
-                <h3 class="mt-2">
-                    {{-- MENU --}}
-                    @yield('topic')
-                    {{-- SUB MENU --}}
-                    <small class="text-muted">@yield('short_desc')</small>
-                </h3>
-                {{-- DESCRIPTION --}}
-                <p>@yield('long_desc')</p>
-                {{-- CONTENT --}}
-                @yield('content')
-            </div>
-        </main>
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy;
-                        Pilkom ULM 2021
-                    </div>
-                    {{-- COPYRIGHT --}}
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main class="bg-content">
+                @yield('content_full')
+                <div class="container-fluid">
+                    {{-- BASIC --}}
+                    <h3 class="mt-2">
+                        {{-- MENU --}}
+                        @yield('topic')
+                        {{-- SUB MENU --}}
+                        <small class="text-muted">@yield('short_desc')</small>
+                    </h3>
+                    {{-- DESCRIPTION --}}
+                    <p>@yield('long_desc')</p>
+                    {{-- CONTENT --}}
+                    @yield('content')
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy;
+                            Pilkom ULM 2021
+                        </div>
+                        {{-- COPYRIGHT --}}
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    </div>
+            </footer>
+        </div>
     </div>
 
 

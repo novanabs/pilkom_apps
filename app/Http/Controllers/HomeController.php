@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Meeting;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $user = User::with('meetings','notulen')
+        ->orderBy('name')
+        ->get();
+
+        $meeting = Meeting::orderBy('meeting_date','DESC')->take(5)->get();
+
+        // dd($meeting);
+
+        return view('home', compact('user','meeting'));
     }
 }

@@ -40,7 +40,7 @@ class Meeting extends Model
 
     public function getShortDateIndonesiaAttribute(){
         $meeting_date = new Carbon($this->meeting_date);
-        return $meeting_date->format('d-m-Y');
+        return $meeting_date->translatedFormat('d-M-Y');
     }
 
     public function getDayAttribute(){
