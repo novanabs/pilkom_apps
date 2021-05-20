@@ -26,10 +26,10 @@ class MeetingController extends Controller
             return datatables()->of($table)
             ->addColumn('action', function($data){
                 
-                $button = '<div class="btn-group btn-group-sm" role="group">';
-                $button .= '<a role="button" href="/app_meeting/'.$data->id.'/edit" id="edit-meeting" data-id="'.$data->id.'" class="btn btn-success btn-sm text-white"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></a>';
+                $button = '<div class="btn-group btn-group-sm btn-block" role="group">';
                 $button .= '<a target="_blank" href="/app_meeting/'.$data->id.'" role="button" id="print-meeting"  data-id="'.$data->id.'" class="btn btn-warning btn-sm"><i class="fa fa-sm fa-fw fa-print mr-1"></i><small>Print</small></a>';
-                if(\Auth::user()->group_id == "SUPER_ADMIN"){
+                if(\Auth::user()->group_id == "SUPER_ADMIN" || \Auth::user()->name == $data->notulen->name){
+                    $button .= '<a role="button" href="/app_meeting/'.$data->id.'/edit" id="edit-meeting" data-id="'.$data->id.'" class="btn btn-success btn-sm text-white"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></a>';
                     $button .= '<a role="button" id="delete-meeting"  data-id="'.$data->id.'" class="btn btn-danger btn-sm text-white"><i class="fa fa-sm fa-fw fa-times mr-1"></i><small>Del</small></a>';
                 }
                 $button .= '</div>';
