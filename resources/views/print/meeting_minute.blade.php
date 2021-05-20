@@ -11,8 +11,25 @@
     {{-- STYLE LAPORAN --}}
     <link href="{{ public_path('css/laporan.css') }}" rel="stylesheet" type="text/css" />
     <style>
-        table {
+        .border-ttd {
+            position: relative;
+            width: 100%;
+            /* border: 3px solid blue; */
+        }
+
+        .ttd {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            /* border: 3px solid #73AD21; */
+        }
+
+        table,
+        tr,
+        td {
             border-collapse: collapse !important;
+            border: 1px solid black;
         }
 
         th,
@@ -120,39 +137,28 @@
                     <hr>
                 </td>
             </tr>
-            <tr>
-                {{-- style="padding:20px !important;" --}}
-                <td colspan="4">
-                    <div class="bold">Catatan</div>
-                    {!! $meeting->notes!!}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td style="height: 30px;"></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td>Mengetahui,</td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td>Ketua Prodi</td>
-            </tr>
-            <tr>
-                <td colspan="3" style="height:70px"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td style="white-space: nowrap;"><u><strong>{{$kaprodi->name}}</strong></u></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td style="line-height: 8px;">{{$kaprodi->NIP_NIK}}</td>
-            </tr>
         </tbody>
     </table>
+    <div class="bold text-center">Keputusan Rapat</div>
+    <div>
+        {!! $meeting->notes!!}
+    </div>
+    <div class="border-ttd">
+        <div class="ttd">
+            <div style="text-align:left;">
+                Mengetahui,
+                <br>
+                Ketua Prodi
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <u> {{$kaprodi->name}}</u>
+                {{$kaprodi->NIP_NIK}}
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
