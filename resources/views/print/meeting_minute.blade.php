@@ -29,7 +29,7 @@
         tr,
         td {
             border-collapse: collapse !important;
-            /* border: 1px solid black; */
+            border: 1px solid black;
         }
 
         th,
@@ -103,7 +103,7 @@
             <tr>
 
                 <td class="bold">Notulen</td>
-                <td style="white-space: nowrap;"> : {{$meeting->notulen->name}}</td>
+                <td> : {{$meeting->notulen->name}}</td>
                 <td class="bold">Jam</td>
                 <td> : {{$meeting->time}}</td>
             </tr>
