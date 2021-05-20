@@ -27,6 +27,11 @@
         padding: 0px;
         margin: 0px;
     }
+
+    thead>tr>td {
+        padding-top: 4px;
+        padding-bottom: 3px;
+    }
 </style>
 @endsection
 
@@ -38,7 +43,7 @@
         <div class="col-md-6 col-sm-12">
             <div class="row p-1 pt-1">
                 <div class="col-12 px-0">
-                    <table class="" cellpadding="2" cellspacing="0">
+                    <table>
                         <thead class="bg-dark text-white font">
                             <tr>
                                 <td>Nama</td>
@@ -62,7 +67,7 @@
         {{-- SPACE 2 --}}
         <div class="col-md-6 col-sm-12">
             <div class="row px-1 pt-1">
-                <div class="col-12 text-center bg-dark rounded-top">
+                <div class="col-12 text-center bg-dark">
                     <p class="mb-0 py-1 text-light">Topik Rapat Terbaru</p>
                 </div>
                 <div class="col-12  box-height d-flex align-items-center justify-content-center rounded-bottom">
