@@ -1,6 +1,6 @@
 @extends('layout_admin')
 
-@section('topic','System')
+@section('topic','Sistem')
 @section('short_desc','Hak Akses')
 @section('long_desc','Semua hak akses yang terdaftar dalam sistem')
 

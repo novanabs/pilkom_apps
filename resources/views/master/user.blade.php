@@ -1,8 +1,8 @@
 @extends('layout_admin')
 
 @section('topic','Master')
-@section('short_desc','User')
-@section('long_desc','Semua user yang terdaftar dalam sistem')
+@section('short_desc','Pengguna')
+@section('long_desc','Semua pengguna yang terdaftar dalam sistem')
 
 
 @section('css')
@@ -22,7 +22,7 @@
                 {{-- <th style="">Alamat</th> --}}
                 <th style="white-space: nowrap;">No. HP</th>
                 <th style="">Hak Akses</th>
-                <th style="width:0%;">Action</th>
+                <th style="width:0%;">Aksi</th>
             </tr>
         </thead>
     </table>

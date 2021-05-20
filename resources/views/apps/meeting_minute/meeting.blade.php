@@ -19,7 +19,7 @@
                 <th style="width:20%;">Tanggal Rapat</th>
                 <th style="width:15%;">Waktu</th>
                 <th style="width:15%;">Ruangan</th>
-                <th style="width:0%;">Action</th>
+                <th style="width:0%;">Aksi</th>
             </tr>
         </thead>
         <tfoot>
