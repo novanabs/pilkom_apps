@@ -29,7 +29,7 @@
         tr,
         td {
             border-collapse: collapse !important;
-            border: 1px solid black;
+            /* border: 1px solid black; */
         }
 
         th,
