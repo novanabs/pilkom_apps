@@ -139,7 +139,7 @@
             </tr>
         </tbody>
     </table>
-    <div class="bold text-center">Keputusan Rapat</div>
+    <div class="bold text-center">Catatan Rapat</div>
     <div>
         {!! $meeting->notes!!}
     </div>
