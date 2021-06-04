@@ -14,7 +14,7 @@
     <table class="table table-bordered table-sm mt-2 table-responsive-lg" id="meeting-table" style="width:100%">
         <thead class="thead-dark">
             <tr class="text-center">
-                <th style="width:30%;">Topic</th>
+                <th style="width:30%;">Topik</th>
                 <th style="width:30%;">Notulen</th>
                 <th style="width:20%;">Tanggal Rapat</th>
                 <th style="width:15%;">Waktu</th>
