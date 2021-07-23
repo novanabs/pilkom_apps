@@ -17,14 +17,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {{-- Style CSS: ADMIN --}}
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+    {{-- css/styles.css --}}
     {{-- SIBUHAR ADDITIONAL CSS --}}
-    <link href="css/sibuhar.css" rel="stylesheet" />
+    <link href="{{asset('css/sibuhar.css')}}" rel="stylesheet" />
     {{-- FONT AWESOME JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous">
     </script>
     {{-- DATATABLE BOOTSTRAP 4 CSS --}}
-    <link rel="stylesheet" href="datatable/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="{{asset('datatable/dataTables.bootstrap4.css')}}">
     {{-- DATATABLE CSS --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     {{-- ADDITIONAL CSS CUSTOM --}}
@@ -280,7 +281,7 @@
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
     {{-- JQUERY --}}
-    <script src="datatable/jquery.js"> </script>
+    <script src="{{asset('datatable/jquery.js')}}"> </script>
     {{-- POPPPER JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
@@ -288,11 +289,11 @@
     {{-- BOOTSRAP MIN JS--}}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     {{-- DATATABLES JS --}}
-    <script src="datatable/jquery.dataTables.min.js"></script>
+    <script src="{{asset('datatable/jquery.dataTables.min.js')}}"></script>
     {{-- BOOTSTRAP 4 DATATABLE --}}
-    <script src="datatable/dataTables.bootstrap4.js"></script>
+    <script src="{{asset('datatable/dataTables.bootstrap4.js')}}"></script>
     {{-- JS SIBUHAR --}}
-    <script src="js/scripts.js"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
     {{-- Validate JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     {{-- TEMPAT JIKA ADA JS TAMBAHAN --}}
