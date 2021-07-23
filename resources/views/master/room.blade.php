@@ -6,7 +6,7 @@
 
 
 @section('css')
-<link rel="stylesheet" href="/datatable/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="datatable/dataTables.bootstrap4.css">
 @endsection
 
 @section('content')

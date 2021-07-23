@@ -6,7 +6,7 @@
 
 
 @section('css')
-<link rel="stylesheet" href="/datatable/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="datatable/dataTables.bootstrap4.css">
 <script src="https://cdn.tiny.cloud/1/lavhoag7c4yey9n8q7sar7frvxe18sn8s3vs6l52kz7f95nc/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"></script>
 
