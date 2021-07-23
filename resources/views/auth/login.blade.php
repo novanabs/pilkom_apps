@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pilkom App</title>
-    <link rel="stylesheet" href="/datatable/dataTables.bootstrap4.css">
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="datatable/dataTables.bootstrap4.css">
+    <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous">
     </script>
     <style>
@@ -52,7 +52,7 @@
             /* background-color: #20B2AA; */
             background-repeat: no-repeat;
             background-size: contain;
-            background-image: url('/img/logo-ulm.png');
+            background-image: url('img/logo-ulm.png');
         }
     </style>
 </head>

@@ -182,7 +182,7 @@
                             </nav>
                         </div>
 
-                        {{-- APPS --}}
+                        {{-- Aplikasi --}}
                         @include('partial.h_dropdown_title',[
                         'title' => 'Aplikasi',
                         'data_target'=>'#collapseApps',
@@ -195,6 +195,8 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
                                     href="{{route('app_meeting.index')}}">Catatan Rapat</a>
+                                {{-- <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
+                                href="{{route('app_penelitian.index')}}">Penelitian Prodi</a> --}}
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>
