@@ -63,7 +63,7 @@
         <div class="modal-content"
             style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <div class="col-12 modal-header" style="background-color:#20B2AA;">
-                <h5 class="h4 mx-auto my-0 font-weight-bold" style="color:#2F4F4F;">Login</h5>
+                <h5 class="h4 mx-auto my-0 font-weight-bold" style="color:white;">Login</h5>
             </div>
             <div class="col-12 modal-body">
                 <form method="POST" action="{{ route('login') }}">
@@ -81,7 +81,7 @@
                         @endif
                     </div>
                     <div class="form-group mb-2">
-                        <label for="email" class="col-sm-4 col-form-label py-0 pb-1 font-color">Username</label>
+                        <label for="email" class="col-sm-4 col-form-label py-0 pb-1 font-color">Email</label>
                         <div class="col-md-12">
                             <input id="email" class="form-control @error('error') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -97,12 +97,9 @@
                         </div>
                     </div>
                     <div class="col-12 mb-2">
-                        <div class="d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-sm text-light" style="background-color:#5F9EA0;">
-                                <i class="fa fa-sign-in-alt mr-"></i>
-                                Login
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-sm btn-block text-light" style="background-color:#5F9EA0;">
+                            Masuk
+                        </button>
                     </div>
                     <div class="col-12">
                         <span class="text-secondary" style="font-size:10px;">Copyright &copy; Pilkom ULM
