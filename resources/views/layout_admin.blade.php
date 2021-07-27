@@ -69,7 +69,7 @@
 
     {{-- CLASS TAMBAHAN ASAL : navbar-dark bg-dark --}}
     <div class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="#######">Manajemen Pilkom</a>
+        <a class="navbar-brand" href="#######">SIM Prodi Pilkom</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fa fa-bars"></i></button><!-- Navbar Search-->
 
@@ -116,7 +116,7 @@
                                 <div class="row">
                                     {{-- USER INFO --}}
                                     <div class="col-12 p-0 mb-2">
-                                        <p class="m-0 info-color">User info</p>
+                                        <p class="m-0 info-color">Selamat datang:</p>
                                         {{-- NAMA USER --}}
                                         <span class="font-weight-bold info-color">{{\Auth::user()->short_name}}</span>
                                     </div>
@@ -128,7 +128,7 @@
                                     <div class="col-12 p-0">
                                         {{-- GROUP ID --}}
                                         <i class="fa fa-users fa-sm mr-2 fa-fw arrow-icon" style="color: #465442"></i>
-                                        <span class="small info-color">{{\Auth::user()->groups->id}}</span>
+                                        <span class="small info-color">{{\Auth::user()->job_title_id}}</span>
                                     </div>
                                     <div class="col-12 p-0">
                                         {{-- NAMA DAN ID CABANG --}}
