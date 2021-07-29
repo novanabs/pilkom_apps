@@ -62,5 +62,10 @@ class User extends Authenticatable
         
         return $name;
     }
+
+    public function krs_consultations()
+    {
+        return $this->hasOne('App\KRSConsultation','user_id');
+    }
     
 }

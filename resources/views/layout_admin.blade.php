@@ -194,10 +194,10 @@
                         <div class="{{ Route::is('app*') ? '' : 'collapse'}}" id="collapseApps"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
+                                <a class="nav-link text-color {{ Route::is('*meeting*') ? 'active' : ''}}"
                                     href="{{route('app_meeting.index')}}">Catatan Rapat</a>
-                                {{-- <a class="nav-link text-color {{ Route::is('app*') ? 'active' : ''}}"
-                                href="{{route('app_penelitian.index')}}">Penelitian Prodi</a> --}}
+                                <a class="nav-link text-color {{ Route::is('*consultation*') ? 'active' : ''}}"
+                                    href="{{route('app_krs_consultation.index')}}">Konsultasi KRS</a>
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>
