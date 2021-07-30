@@ -82,7 +82,8 @@
                             <div class="row">
                                 <label class="col-7 col-form-label col-form-label-sm">SLIP UKT</label>
                                 <div class="col-5" id="">
-                                    <button class="center btn btn-sm btn-primary btn-block">Check</button>
+                                    <a target="_blank" type="button" href=""
+                                        class="slip_ukt center btn btn-sm btn-primary btn-block">Check</a>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +91,8 @@
                             <div class="row">
                                 <label class="col-7 col-form-label col-form-label-sm">KHS</label>
                                 <div class="col-5" id="">
-                                    <button class="center btn btn-sm btn-primary btn-block">Check</button>
+                                    <a target="_blank" type="button" href=""
+                                        class="khs center btn btn-sm btn-primary btn-block">Check</a>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +100,8 @@
                             <div class="row">
                                 <label class="col-7 col-form-label col-form-label-sm">Transkrip</label>
                                 <div class="col-5" id="">
-                                    <button class="center btn btn-sm btn-primary btn-block">Check</button>
+                                    <a target="_blank" type="button" href=""
+                                        class="transkrip center btn btn-sm btn-primary btn-block">Check</a>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +109,8 @@
                             <div class="row">
                                 <label class="col-7 col-form-label col-form-label-sm">KRS Sementara</label>
                                 <div class="col-5" id="">
-                                    <button class="center btn btn-sm btn-primary btn-block">Check</button>
+                                    <a target="_blank" type="button" href=""
+                                        class="kr_sementara center btn btn-sm btn-primary btn-block">Check</a>
                                 </div>
                             </div>
                         </div>
@@ -184,15 +188,18 @@
     
 
     // HISTORY JENIS_TABUNGAN MODAL
-    $('body').on('click', '#check_konsultasi', function () {
+    $('body').on('click', '.check_konsultasi', function () {
         id = $(this).data('id');
 
         $.get('app_krs_consultation/'+id, function (data) {
             $('#check-file-PA-modal').modal('show');
 
-            // alert(JSON.stringify(data));
             $('#name').val(data.students.name);
             $('#nim').val(data.students.nim);
+            $('.slip_ukt').attr('href',data.slip_ukt);
+            $('.khs').attr('href',data.khs);
+            $('.transkrip').attr('href',data.transkrip);
+            $('.khs_sementara').attr('href',data.khs_sementara);
         })
     });
 

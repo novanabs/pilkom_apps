@@ -197,7 +197,9 @@
                                 <a class="nav-link text-color {{ Route::is('*meeting*') ? 'active' : ''}}"
                                     href="{{route('app_meeting.index')}}">Catatan Rapat</a>
                                 <a class="nav-link text-color {{ Route::is('*consultation*') ? 'active' : ''}}"
-                                    href="{{route('app_krs_consultation.index')}}">Konsultasi KRS</a>
+                                    href="{{route('app_krs_consultation.index')}}">Konsultasi KRS <span
+                                        class="ml-2 badge badge-primary badge-pill">new</span></a>
+
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>

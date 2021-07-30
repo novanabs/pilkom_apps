@@ -40,7 +40,7 @@ class KRSConsultationController extends Controller
             
             return datatables()->of($table)
             ->addColumn('action', function($query){
-                $button = '<button id="check_konsultasi" data-toggle="tooltip" data-original-title="Show" data-id="'.$query->id.'" class="show btn btn-info btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Check</small></button>';
+                $button = '<button  data-toggle="tooltip" data-original-title="Show" data-id="'.$query->id.'" class="check_konsultasi btn btn-info btn-sm"><small>Check</small></button>';
                 return $button;
             })
             ->editColumn('created_at',function($query){
@@ -84,7 +84,7 @@ class KRSConsultationController extends Controller
     {
         if(request()->ajax())
         {
-            $student = KRSconsultation::with(['students','consultation_notes'])->where('user_id',$id)->first();
+            $student = KRSconsultation::with(['students','consultation_notes'])->where('id',$id)->first();
 
             return $student;
         }
