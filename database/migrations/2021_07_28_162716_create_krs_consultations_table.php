@@ -17,10 +17,10 @@ class CreateKrsConsultationsTable extends Migration
             $table->id();
             $table->string('student_id')->index();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('slip_ukt');
-            $table->string('khs');
-            $table->string('transkrip');
-            $table->string('krs_sementara');
+            $table->string('slip_ukt',100);
+            $table->string('khs',100);
+            $table->string('transkrip',100);
+            $table->string('krs_sementara',100);
             $table->enum('status',['BELUM DILIHAT','SUDAH DILIHAT','SEBAGIAN DILIHAT']);
             $table->timestamps();
 
