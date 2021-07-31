@@ -18,7 +18,7 @@ class CreatePermissionsTable extends Migration
             $table->string('sub_menu_key',45);
             $table->tinyInteger('sub_menu_value')->default('1');
             $table->string('sub_menu_view',45);
-            $table->string('group_id',20)->index();
+            $table->string('job_title_id',20)->index();
             
             $table->timestamps();
         });

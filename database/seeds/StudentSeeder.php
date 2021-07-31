@@ -62,6 +62,12 @@ class StudentSeeder extends Seeder
             'name' => "Syifa Saputra Berlian",
             'email' => '1710131320042@ulm.ac.id',
             'password' => Hash::make('password'),
+        ],
+        [
+            'nim' => 'A1C615039',
+            'name' => "Firman Abdul Jabar",
+            'email' => 'A1C615039@ulm.ac.id',
+            'password' => Hash::make('password'),
         ]
         ];
         

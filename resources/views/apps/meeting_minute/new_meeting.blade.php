@@ -40,10 +40,10 @@
                     <div class="col-sm-9">
                         <select id="notulen_id" name="notulen_id" class="form-control form-control-sm" required>
                             @foreach ($users as $notulen)
-                            @if (old('notulen_id') == $notulen->id)
-                            <option value="{{$notulen->id}}" selected>{{$notulen->name}}</option>
+                            @if (old('notulen_id') == $notulen->nip)
+                            <option value="{{$notulen->nip}}" selected>{{$notulen->name}}</option>
                             @else
-                            <option value="{{$notulen->id}}">{{$notulen->name}}</option>
+                            <option value="{{$notulen->nip}}">{{$notulen->name}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -107,7 +107,7 @@
                     @foreach ($users as $item)
                     <div class="col-4">
                         <input type="checkbox" name="participant[]" id="participant"
-                            class="form-check-input participant" value="{{$item->id}}">
+                            class="form-check-input participant" value="{{$item->nip}}">
                         <label class="ml-2 form-check-label small2" for="participant">{{$item->name}}</label>
                     </div>
                     @endforeach

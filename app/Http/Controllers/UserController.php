@@ -28,16 +28,16 @@ class UserController extends Controller
                 
                 $button ="";
                
-                if(\Auth::user()->name == $data->name && \Auth::user()->group_id == "ADMIN"){ // hanya bisa mengedit dirinya sendiri
-                    $button = '<button id="edit-user" data-id="'.$data->id.'" class="btn btn-block btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
-                }else if(\Auth::user()->name != $data->name && \Auth::user()->group_id == "ADMIN"){
+                if(\Auth::user()->name == $data->name & \Auth::user()->job_title_id != "Operator"){ // hanya bisa mengedit dirinya sendiri
+                    $button = '<button id="edit-user" data-id="'.$data->nip.'" class="btn btn-block btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
+                }else if(\Auth::user()->name != $data->name && \Auth::user()->job_title_id == "Operator"){
                     $button = '<button disabled class="btn btn-block btn-secondary btn-sm"><small><i class="fa fa-sm fa-hand-paper mr-2"></i>Read Only</small></button>';
                 }
                 
-                if(\Auth::user()->group_id == "SUPER_ADMIN"){
+                if(\Auth::user()->job_title_id == "Operator"){
                     $button = '<div class="btn-group btn-group-sm" role="group">';
-                    $button .= '<button id="edit-user" data-id="'.$data->id.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
-                    $button .= '<button id="delete-user"  data-id="'.$data->id.'" class="btn btn-danger btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Del</small></button>';           
+                    $button .= '<button id="edit-user" data-id="'.$data->nip.'" class="btn btn-success btn-sm"><small><i class="fa fa-sm fa-edit mr-2"></i>Edit</small></button>';
+                    $button .= '<button id="delete-user"  data-id="'.$data->nip.'" class="btn btn-danger btn-sm"><i class="fa fa-sm fa-fw fa-info mr-1"></i><small>Del</small></button>';           
                     $button .= '</div>';
                 }
 
@@ -47,10 +47,9 @@ class UserController extends Controller
             ->make(true);
         }
 
-        $groups = Group::all();
         $job_titles = Job_title::all();
         
-        return view('master.user',compact(['groups','job_titles']));
+        return view('master.user',compact(['job_titles']));
     }
 
     /**
@@ -80,16 +79,14 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->phonenumber = $request->phonenumber;
             
-            if(\Auth::user()->group_id != "SUPER_ADMIN"){
-                $user->group_id = "ADMIN";
+            if(\Auth::user()->job_title_id != "Operator"){
                 $user->job_title_id = "Dosen";
             }else{
-                $user->group_id = $request->group_id;
                 $user->job_title_id = $request->job_title_id;
             }
 
-            $user->NIP_NIK = $request->NIP_NIK;
-            $user->NIDN = $request->NIDN;
+            $user->nip = $request->nip;
+            $user->nid = $request->nid;
 
             $user->created_at = now();
             $user->save();
@@ -100,18 +97,17 @@ class UserController extends Controller
 
         }else{ // update
 
-            $user =  User::find($request->id);
+            $user =  User::find($request->nip);
 
             $user->name = $request->name;
             $user->address = $request->address;
             $user->phonenumber = $request->phonenumber;
             
-            if(\Auth::user()->group_id == "SUPER_ADMIN"){
-                $user->group_id = $request->group_id;
+            if(\Auth::user()->group_id == "Operator"){
                 $user->job_title_id = $request->job_title_id;
             }
-            $user->NIP_NIK = $request->NIP_NIK;
-            $user->NIDN = $request->NIDN;
+            $user->nip = $request->nip;
+            $user->nid = $request->nid;
             $user->updated_at = now();
  
             if($request->password != ""){

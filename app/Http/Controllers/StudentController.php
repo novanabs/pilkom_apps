@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Group;
-use App\Meeting;
-use App\Permission;
-use App\Room;
-use Hash,DB;
-
 use Illuminate\Http\Request;
+use App\Student;
 
-class TestController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +14,22 @@ class TestController extends Controller
      */
     public function index()
     {
-        $table = User::with('participants')
-        ->first();
+        if(request()->ajax())
+        {
+            $table = Student::all();
 
-        dd($table->participants->count());
+            
+            return datatables()->of($table)
+            // ->addColumn('action', function($query){
+            //     $button = '<button  data-toggle="tooltip" data-original-title="Show" data-id="'.$query->id.'" class="check_konsultasi btn btn-info btn-sm"><small>Check</small></button>';
+            //     return $button;
+            // })
+            
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+
+        return view('master.student');
     }
 
     /**

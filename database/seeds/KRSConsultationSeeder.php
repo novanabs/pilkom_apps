@@ -30,6 +30,24 @@ class KRSConsultationSeeder extends Seeder
         // 1710131210002
         // 1710131320042
 
+        DB::table('academic_datas')->insert([
+            'id' => 1,
+            'academic_year' => '2021/2022',
+            'semester' => 'Ganjil'
+        ],[
+            'id' => 2,
+            'academic_year' => '2021/2022',
+            'semester' => 'Genap'
+        ],[
+            'id' => 3,
+            'academic_year' => '2021/2022',
+            'semester' => 'Pendek'
+        ],[
+            'id' => 4,
+            'academic_year' => '2022/2023',
+            'semester' => 'Ganjil'
+        ]);
+
         $krs_consultation = [
             [
             'id' => '1',
@@ -39,7 +57,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],[
             'id' => '2',
             'student_id' => "A1C615046",
@@ -48,7 +66,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '3',
@@ -58,7 +76,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '4',
@@ -68,7 +86,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'SEBAGIAN DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '5',
@@ -78,7 +96,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '6',
@@ -88,7 +106,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'SUDAH DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '7',
@@ -98,7 +116,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '8',
@@ -108,7 +126,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '9',
@@ -118,7 +136,7 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'BELUM DILIHAT',
+            'academic_id' => 1,
         ],
         [
             'id' => '10',
@@ -128,8 +146,17 @@ class KRSConsultationSeeder extends Seeder
             'khs' => 'google.com',
             'transkrip' => 'google.com',
             'krs_sementara' => 'google.com',
-            'status' => 'SEBAGIAN DILIHAT',
-        ]
+            'academic_id' => 1,
+        ],[
+            'id' => '11',
+            'student_id' => "A1C615039",
+            'user_id' => '3',
+            'slip_ukt' => NULL,
+            'khs' => 'google.com',
+            'transkrip' => 'google.com',
+            'krs_sementara' => 'google.com',
+            'academic_id' => 2,
+        ],
         ];
         
         DB::table('krs_consultations')->insert($krs_consultation);

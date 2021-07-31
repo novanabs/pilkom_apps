@@ -16,6 +16,9 @@ class AddForeignPhase2 extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->foreign('job_title_id')->references('id')->on('job_titles')->onDelete('cascade');
         });
+        Schema::table('permissions', function (Blueprint $table) {
+            $table->foreign('job_title_id')->references('id')->on('job_titles')->onDelete('cascade');
+        });
     }
 
     /**
@@ -26,6 +29,9 @@ class AddForeignPhase2 extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table){
+            $table->dropForeign(['job_title_id']);
+        });
+        Schema::table('permissions', function(Blueprint $table){
             $table->dropForeign(['job_title_id']);
         });
     }

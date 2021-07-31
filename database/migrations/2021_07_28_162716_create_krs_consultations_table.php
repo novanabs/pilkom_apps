@@ -16,16 +16,16 @@ class CreateKrsConsultationsTable extends Migration
         Schema::create('krs_consultations', function (Blueprint $table) {
             $table->id();
             $table->string('student_id')->index();
-            $table->unsignedBigInteger('user_id')->index();
-            $table->string('slip_ukt',100);
-            $table->string('khs',100);
-            $table->string('transkrip',100);
-            $table->string('krs_sementara',100);
-            $table->enum('status',['BELUM DILIHAT','SUDAH DILIHAT','SEBAGIAN DILIHAT']);
+            $table->string('user_id',30)->index();
+            $table->string('slip_ukt',100)->nullable();
+            $table->string('khs',100)->nullable();
+            $table->string('transkrip',100)->nullable();
+            $table->string('krs_sementara',100)->nullable();
+            // $table->enum('status',['BELUM UPLOAD','SUDAH DILIHAT','SEBAGIAN DILIHAT']);
             $table->timestamps();
 
             $table->foreign('student_id')->references('nim')->on('students')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('nip')->on('users')->onDelete('cascade');
         });
     }
 

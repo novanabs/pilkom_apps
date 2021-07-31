@@ -10,14 +10,17 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $primaryKey = 'nip';
+    
+    protected $keyType = 'string';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id','name', 'email', 'password','address','phonenumber',
-        'created_at','updated_at','group_id'
+        'nip','name', 'email', 'password','address','phonenumber',
+        'created_at','updated_at','job_title_id'
     ];
 
     /**
@@ -31,13 +34,13 @@ class User extends Authenticatable
 
     public function meetings()
     {
-        return $this->belongsToMany('App\Meeting');
+        return $this->belongsToMany('App\Meeting','meeting_user','user_id','meeting_id');
     }
 
     // user has many meeting
     public function notulen() {
         
-        return $this->hasMany('App\Meeting', 'notulen_id');
+        return $this->hasMany('App\Meeting', 'notulen_id','nip');
     }
     
 

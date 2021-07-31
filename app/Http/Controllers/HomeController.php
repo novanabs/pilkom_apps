@@ -25,14 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $user = User::with('meetings','notulen')
+        $user = User::with('notulen','meetings')
         ->orderBy('name')
         ->get();
 
         $meeting = Meeting::orderBy('meeting_date','DESC')->take(5)->get();
-
-        // dd($meeting);
 
         return view('home', compact('user','meeting'));
     }

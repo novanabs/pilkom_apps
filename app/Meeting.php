@@ -21,7 +21,7 @@ class Meeting extends Model
     // users/ participants has many participants
     public function participants()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User','meeting_user','meeting_id','user_id');
     }
 
     // user relation as notulen of meeting, meeting belongs to user

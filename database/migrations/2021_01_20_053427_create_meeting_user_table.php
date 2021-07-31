@@ -15,11 +15,11 @@ class CreateMeetingUserTable extends Migration
     {
         Schema::create('meeting_user', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('user_id')->index();
+            $table->string('user_id',30)->index();
             $table->unsignedBigInteger('meeting_id')->index();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('meeting_id')->references('id')->on('meetings')->onDelete('cascade');
+            // $table->foreign('user_id')->references('nip')->on('users')->onDelete('cascade');
+            // $table->foreign('meeting_id')->references('id')->on('meetings')->onDelete('cascade');
                 
             $table->timestamps();
         });
@@ -32,11 +32,11 @@ class CreateMeetingUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('meeting_user', function(Blueprint $table){
-            $table->dropForeign(['user_id']);
-            $table->dropForeign(['meeting_id']);
+        // Schema::table('meeting_user', function(Blueprint $table){
+        //     $table->dropForeign(['user_id']);
+        //     $table->dropForeign(['meeting_id']);
             
-        });
+        // });
         Schema::dropIfExists('meeting_user');
     }
 }

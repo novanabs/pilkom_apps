@@ -179,13 +179,14 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color" href="{{route('master_user.index')}}">Pengguna</a>
                                 <a class="nav-link text-color" href="{{route('master_room.index')}}">Ruangan</a>
+                                <a class="nav-link text-color" href="{{route('master_student.index')}}">Mahasiswa</a>
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>
 
                         {{-- Aplikasi --}}
                         @include('partial.h_dropdown_title',[
-                        'title' => 'Aplikasi',
+                        'title' => 'Layanan',
                         'data_target'=>'#collapseApps',
                         'aria_controls'=>'collapseApps',
                         'icon' => 'fa-rocket',
@@ -196,9 +197,12 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color {{ Route::is('*meeting*') ? 'active' : ''}}"
                                     href="{{route('app_meeting.index')}}">Catatan Rapat</a>
-                                <a class="nav-link text-color {{ Route::is('*consultation*') ? 'active' : ''}}"
+                                <a class="nav-link text-color {{ Route::is('*app_krs_consultation.index*') ? 'active' : ''}}"
                                     href="{{route('app_krs_consultation.index')}}">Konsultasi KRS <span
-                                        class="ml-2 badge badge-primary badge-pill">new</span></a>
+                                        class="ml-1 badge badge-primary badge-pill">new</span></a>
+                                <a class="nav-link text-color {{ Route::is('*generate*') ? 'active' : ''}}"
+                                    href="{{route('app_krs_consultation.generate_view')}}">Create Konsul PA <span
+                                        class="ml-1 badge badge-primary badge-pill">new</span></a>
 
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>

@@ -1,8 +1,8 @@
 @extends('layout_admin')
 
 @section('topic','Master')
-@section('short_desc','Ruangan')
-@section('long_desc','Semua ruangan yang terdaftar dalam sistem')
+@section('short_desc','Mahasiswa')
+@section('long_desc','daftar semua mahasiswa pada')
 
 
 @section('css')
@@ -11,25 +11,32 @@
 
 @section('content')
 <div class="col-12 p-0 p-2 border">
-    <table class="table table-bordered table-sm mt-2 table-responsive-lg" id="room-table" style="width:100%">
+    <table class="table table-bordered table-sm mt-2 table-responsive-lg" id="students-table" style="width:100%">
         <thead class="thead-dark">
             <tr class="text-center">
                 <th style="width:33%;">Nama</th>
-                <th style="width:33%;">Deskripsi</th>
-                <th style="width:33%;">Created at</th>
+                <th style="width:33%;">NIM</th>
+                <th style="width:33%;">email</th>
                 {{-- <th style="width:0%;">Action</th> --}}
             </tr>
         </thead>
+        <tfoot>
+            <tr>
+                <th style="width:33%;">Nama</th>
+                <th style="width:33%;">NIM</th>
+                <th style="width:33%;">email</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
 {{-- MODAL ADD/EDIT USER--}}
-<div class=" modal fade" id="room-modal" aria-hidden="true">
+<div class=" modal fade" id="student-modal" aria-hidden="true">
     <div class="modal-dialog ">
-        <form id="room-form" name="room-modal" class="form-horizontal">
+        <form id="student-form" name="student-form" class="form-horizontal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Edit Room</h5>
+                    <h5 class="modal-title" id="modal-title">Edit Mahasiswa</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -90,7 +97,7 @@
 <script type="text/javascript">
     $(document).ready( function () {
 
-        $('#web-title').text('Pilkom - Ruangan');
+        $('#web-title').text('Pilkom - Mahasiswa');
 
         // XCRF TOKEN for Validation
         $.ajaxSetup({
@@ -100,70 +107,72 @@
         });
 
         // inisialisasi datatable
-        var table = $('#room-table').DataTable({
+        var table = $('#students-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('master_room.index') }}", // Alamat json
+                url: "{{ route('master_student.index') }}", // Alamat json
                 type: 'GET', // tipe input
             },
             dom:"lt<'col-12'<'row d-flex justify-content-between'<'tambah my-auto'><'small'i><'pagination pagination-sm'p>>>",
             columns: [ // load data
                 { data: 'name', name: 'name' },
-                { data: 'description', name: 'description'},
-                { data: 'created_at', name: 'created_at' },
+                { data: 'nim', name: 'nim'},
+                { data: 'email', name: 'email' },
                 // {data: 'action', name: 'action', orderable: false,searchable:false},
             ]
         });
 
         // button tambah 
-        $("div.tambah").html('<button type="button" id="tambah-room" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah ruangan</button>');
+        $("div.tambah").html('<button type="button" id="tambah-student" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah ruangan</button>');
     
+        header_search_box('#students-table',table);
+
         if("{{\Auth::user()->job_title_id}}" != "Operator"){   
-            $('#tambah-room').css('display','none');
+            $('#tambah-student').css('display','none');
         }
         // ADD GOL MODAL
-        $('#tambah-room').click(function () {
+        $('#tambah-student').click(function () {
             $(".print-error-msg").css('display','none');
-            $('#room-form').trigger("reset");
-            $('#modal-title').html("Tambahkan Room Baru");
-            $('#room-modal').modal('show');
+            $('#student-form').trigger("reset");
+            $('#modal-title').html("Tambahkan Mahasiswa Baru");
+            $('#student-modal').modal('show');
             $('#action').attr('value','add');
         });
         
         // fokus input
 
-        $('#room-modal').on('shown.bs.modal',function(){
+        $('#student-modal').on('shown.bs.modal',function(){
             $('#name').focus();
         });
 
         // EDIT GOL MODAL
-        $('body').on('click', '#edit-room', function () {
+        $('body').on('click', '#edit-student', function () {
             var id = $(this).data('id');
-            $.get('master_room/'+id+'/edit', function (data) {
+            $.get('master_student/'+id+'/edit', function (data) {
                 //alert(JSON.stringify(data.management_cabangs[0].id));
                 $(".print-error-msg").css('display','none');
-                $('#room-form').trigger("reset");
+                $('#student-form').trigger("reset");
                 $('#modal-title').html("Edit Ruangan");
                 $('#id').val(data.id);
                 $('#name').val(data.name);
                 $('#description').val(data.description);
                 $('#action').attr('value','edit');
-                $('#room-modal').modal('show');
+                $('#student-modal').modal('show');
                
             })
         });
 
         // DELETE GOL 
-        $('body').on('click', '#delete-room', function () {
+        $('body').on('click', '#delete-student', function () {
             var id = $(this).data("id");
             var conf = confirm("Apakah anda yakin ingin menghapus data ini ?");
             if(conf){
                 $.ajax({
                 type: "get",
-                url: "master_room/destroy/"+id,
+                url: "master_student/destroy/"+id,
                 success: function (data) {
-                var oTable = $('#room-table').dataTable(); 
+                var oTable = $('#students-table').dataTable(); 
                 oTable.fnDraw(false);
                 },
                 error: function (data) {
@@ -175,24 +184,24 @@
     });
  
     // STORE GOL
-    if ($("#room-form").length > 0) {
-        $("#room-form").validate({
+    if ($("#student-form").length > 0) {
+        $("#student-form").validate({
             submitHandler: function(form) {
             $.ajax({
-                data: $('#room-form').serialize(),
-                url: "{{ route('master_room.store') }}",
+                data: $('#student-form').serialize(),
+                url: "{{ route('master_student.store') }}",
                 type: "POST",
                 success: function (data) {
                     // alert(JSON.stringify(data));
                     if(data.error){ // jika id sudah ada
                         printErrorMsg(data.error);
-                    }else{ // store room baru
+                    }else{ // store student baru
                         $('#alert').css('display','block');
                         $('div.flash-message').html(data.success);
-                        $('#room-modal').trigger("reset");
-                        $('#room-modal').modal('hide');
+                        $('#student-modal').trigger("reset");
+                        $('#student-modal').modal('hide');
                         $('#btn-save');
-                        var oTable = $('#room-table').dataTable();
+                        var oTable = $('#students-table').dataTable();
                         oTable.fnDraw(false);
                     }
                 },

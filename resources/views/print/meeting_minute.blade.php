@@ -155,7 +155,7 @@
                 <br>
                 <br>
                 <u> {{$kaprodi->name}}</u>
-                {{$kaprodi->NIP_NIK}}
+                {{$kaprodi->nip}}
             </div>
         </div>
     </div>

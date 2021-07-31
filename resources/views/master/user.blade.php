@@ -21,10 +21,20 @@
                 <th style="white-space: nowrap;">NIDN</th>
                 {{-- <th style="">Alamat</th> --}}
                 <th style="white-space: nowrap;">No. HP</th>
-                <th style="">Hak Akses</th>
                 <th style="width:0%;">Aksi</th>
             </tr>
         </thead>
+        <tfoot class="thead-dark">
+            <tr class="text-center">
+                <th>Email</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th style="white-space: nowrap;">NIP/NIK</th>
+                <th style="white-space: nowrap;">NIDN</th>
+                {{-- <th style="">Alamat</th> --}}
+                <th style="white-space: nowrap;">No. HP</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
@@ -74,22 +84,20 @@
                             <label class="col-sm-4 col-form-label col-form-label-sm">NIP/NIK
                             </label>
                             <div class="col-sm-8 ">
-                                <input type="text" class="form-control form-control-sm" id="NIP_NIK" name="NIP_NIK"
-                                    required>
+                                <input type="text" class="form-control form-control-sm" id="nip" name="nip" required>
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <label class="col-sm-4 col-form-label col-form-label-sm">NIDN
                             </label>
                             <div class="col-sm-8 ">
-                                <input type="text" class="form-control form-control-sm" id="NIDN" name="NIDN" required>
+                                <input type="text" class="form-control form-control-sm" id="nid" name="nid" required>
                             </div>
                         </div>
                         <div class="mb-2 row">
                             <label class="col-sm-4 col-form-label col-form-label-sm">Jabatan</label>
                             <div class="col-sm-8 ">
-                                <select name="job_title_id" id="job_title_id" class="form-control form-control-sm"
-                                    @if(\Auth::user()->group_id == "SUPER_ADMIN") required @else disabled @endif>
+                                <select name="job_title_id" id="job_title_id" class="form-control form-control-sm">
                                     @foreach($job_titles as $item)
                                     <option value="{{$item->id}}">{{$item->id}}</option>
                                     @endforeach
@@ -112,17 +120,7 @@
                                     name="password" placeholder="Ketik password..." required>
                             </div>
                         </div>
-                        <div class="mb-2 row">
-                            <label class="col-sm-4 col-form-label col-form-label-sm"> Hak Akses </label>
-                            <div class="col-sm-8 ">
-                                <select name="group_id" id="group_id" class="form-control form-control-sm"
-                                    @if(\Auth::user()->group_id == "SUPER_ADMIN") required @else disabled @endif>
-                                    @foreach($groups as $item)
-                                    <option value="{{$item->id}}">{{$item->id}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -175,18 +173,22 @@
             { data: 'email', name: 'email'},
                 { data: 'name', name: 'name' },
                 { data: 'job_titles.id', name: 'job_titles.id' },
-                { data: 'NIP_NIK', name: 'NIP_NIK' },
-                { data: 'NIDN', name: 'NIDN' },
+                { data: 'nip', name: 'nip' },
+                { data: 'nid', name: 'nid' },
                 // { data: 'address', name: 'address' },
                 { data: 'phonenumber', name: 'phonenumber' }, 
-                { data: 'group_id', name: 'group_id' },
                 {data: 'action', name: 'action', orderable: false,searchable:false},
             ]
         });
 
+        header_search_box('#user-table',table);
+
         // button tambah 
         $("div.tambah").html('<button type="button" id="tambah-user" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah User</button>');
         
+        if("{{\Auth::user()->job_title_id}}" != "Operator"){   
+            $('#tambah-user').css('display','none');
+        }
         // get id for add and remove required
         var email = document.getElementById("email");
         var password = document.getElementById("password");
@@ -219,11 +221,10 @@
                 $('#name').val(data.name);
                 $('#id').val(data.id);
                 $('#job_title_id').val(data.job_title_id);
-                $('#NIP_NIK').val(data.NIP_NIK);
-                $('#NIDN').val(data.NIDN);
+                $('#nip').val(data.nip);
+                $('#nid').val(data.nid);
                 $('#address').val(data.address);
                 $('#phonenumber').val(data.phonenumber);
-                $('#group_id').val(data.group_id);
                 $('#action').attr('value','edit');
                 $('#user-modal').modal('show');
                 password.removeAttribute('required',false);
@@ -284,6 +285,5 @@
             }
         })
     }
-
 </script>
 @endsection

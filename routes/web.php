@@ -44,9 +44,16 @@ Route::middleware(['auth'])->group(function(){
 
     // APP KRS CONSULTATION
     Route::resource('app_krs_consultation', 'KRSConsultationController'); // sistem_user
-    Route::get('app_krs_consultation/destroy/{id}', 'KRSConsultationController@destroy')->name('app_meeting.destroy'); // delete user data
+    Route::get('app_krs_consultation/destroy/{id}', 'KRSConsultationController@destroy')->name('app_krs_consultation.destroy'); // delete user data
+    Route::post('app_krs_consultation/store','KRSConsultationController@generate')->name('app_krs_consultation.generate');
+    Route::view('/app_krs_consultation-generate','apps.krs_consultation.generate_consultation_data')->name('app_krs_consultation.generate_view');
+    
 
-    //
+    // MASTER STUDENT
+    Route::resource('master_student', 'StudentController'); // sistem_user
+    Route::get('master_student/destroy/{id}', 'StudentController@destroy')->name('master_student.destroy'); // delete user data
+
+
     // Route::resource('app_penelitian', 'PenelitianController'); // sistem_user
     // Route::get('app_penelitian/destroy/{id}', 'PenelitianController@destroy')->name('app_penelitian.destroy'); // delete user data
 
