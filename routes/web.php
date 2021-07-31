@@ -54,8 +54,14 @@ Route::middleware(['auth'])->group(function(){
     Route::get('master_student/destroy/{id}', 'StudentController@destroy')->name('master_student.destroy'); // delete user data
 
 
+    // SYSTEM GROUP
+    Route::resource('system_job_title', 'Job_titleController'); // sistem_user
+    Route::get('system_job_title/destroy/{id}', 'Job_titleController@destroy')->name('system_job_title.destroy'); // delete user data
+
+
     // Route::resource('app_penelitian', 'PenelitianController'); // sistem_user
     // Route::get('app_penelitian/destroy/{id}', 'PenelitianController@destroy')->name('app_penelitian.destroy'); // delete user data
+
 
     // SYSTEM GROUP
     Route::resource('system_group', 'GroupController'); // sistem_user

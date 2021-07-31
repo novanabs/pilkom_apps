@@ -142,7 +142,6 @@
                     </div>
                     {{-- LINE --}}
                     <div class="offset-1 col-10 offset-1" style="border:1px black solid;">
-                        {{-- <meta name="author" content="novanabs@gmail.com" /> --}}
                     </div>
                     {{-- MENU --}}
                     <div class="nav pt-2">
@@ -151,6 +150,7 @@
                                 Menu
                             </div>
                         </div>
+                        @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
                         <div>
                             <a href="{{route('home')}}"
                                 class="nav-link text-color {{ Route::is('home*') ? 'active' : ''}}">
@@ -164,6 +164,7 @@
                                 </div>
                             </a>
                         </div>
+                        @endif
                         {{-- DASHBOARD --}}
 
                         {{-- MASTER --}}
@@ -178,8 +179,10 @@
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color" href="{{route('master_user.index')}}">Pengguna</a>
+                                @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
                                 <a class="nav-link text-color" href="{{route('master_room.index')}}">Ruangan</a>
                                 <a class="nav-link text-color" href="{{route('master_student.index')}}">Mahasiswa</a>
+                                @endif
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>
@@ -195,19 +198,22 @@
                         <div class="{{ Route::is('app*') ? '' : 'collapse'}}" id="collapseApps"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
                                 <a class="nav-link text-color {{ Route::is('*meeting*') ? 'active' : ''}}"
                                     href="{{route('app_meeting.index')}}">Catatan Rapat</a>
+                                @endif
                                 <a class="nav-link text-color {{ Route::is('*app_krs_consultation.index*') ? 'active' : ''}}"
                                     href="{{route('app_krs_consultation.index')}}">Konsultasi KRS <span
                                         class="ml-1 badge badge-primary badge-pill">new</span></a>
-                                <a class="nav-link text-color {{ Route::is('*generate*') ? 'active' : ''}}"
-                                    href="{{route('app_krs_consultation.generate_view')}}">Create Konsul PA <span
-                                        class="ml-1 badge badge-primary badge-pill">new</span></a>
+                                {{-- <a class="nav-link text-color {{ Route::is('*generate*') ? 'active' : ''}}"
+                                href="{{route('app_krs_consultation.generate_view')}}">Create Konsul PA <span
+                                    class="ml-1 badge badge-primary badge-pill">new</span></a> --}}
 
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
                         </div>
 
+                        @if(\Auth::user()->job_title_id != "Dosen Non Homebase")
                         {{-- SYSTEM --}}
                         @include('partial.h_dropdown_title',[
                         'title' => 'Sistem',
@@ -220,9 +226,10 @@
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color {{ Route::is('system*') ? 'active' : ''}}"
-                                    href="{{route('system_group.index')}}">Hak Akses</a>
+                                    href="{{route('system_job_title.index')}}">Jenis Pengguna</a>
                             </nav>
                         </div>
+                        @endif
 
                         {{-- INFO SOFTWARE --}}
                         <a href="{{route('about')}}" class="nav-link text-color">

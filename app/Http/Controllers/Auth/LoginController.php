@@ -70,7 +70,13 @@ class LoginController extends Controller
 
             Log::info('Login oleh - '.\Auth::user()->name);
             //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
-            return redirect()->route('home');
+
+            if(\Auth::user()->job_title_id != "Dosen Non Homebase"){
+                return redirect()->route('home');
+            }else{
+                return redirect()->route('app_krs_consultation.index');
+            }
+            
             
         }
         
