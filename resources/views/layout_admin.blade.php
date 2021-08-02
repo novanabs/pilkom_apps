@@ -205,9 +205,12 @@
                                 <a class="nav-link text-color {{ Route::is('*app_krs_consultation.index*') ? 'active' : ''}}"
                                     href="{{route('app_krs_consultation.index')}}">Konsultasi KRS <span
                                         class="ml-1 badge badge-primary badge-pill">new</span></a>
-                                {{-- <a class="nav-link text-color {{ Route::is('*generate*') ? 'active' : ''}}"
-                                href="{{route('app_krs_consultation.generate_view')}}">Create Konsul PA <span
-                                    class="ml-1 badge badge-primary badge-pill">new</span></a> --}}
+                                @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
+                                <a class="nav-link text-color {{ Route::is('*generate*') ? 'active' : ''}}"
+                                    href="{{route('app_krs_consultation.generate_view')}}">Create Konsul PA <span
+                                        class="ml-1 badge badge-primary badge-pill">new</span></a>
+                                @endif
+
 
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
