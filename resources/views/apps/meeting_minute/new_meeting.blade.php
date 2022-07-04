@@ -133,7 +133,7 @@
                     <span class="mr-2"></span>
                     <a role="button" class="btn btn-danger btn-sm" href="{{route('app_meeting.index')}}">
                         <i class="fa fa-angle-left"></i>
-                        Batal
+                        Kembali
                     </a>
 
                 </div>

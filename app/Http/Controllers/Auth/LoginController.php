@@ -71,16 +71,16 @@ class LoginController extends Controller
             Log::info('Login oleh - '.\Auth::user()->name);
             //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
 
-            if(\Auth::user()->job_title_id != "Dosen Non Homebase"){
-                return redirect()->route('home');
-            }else{
-                return redirect()->route('app_krs_consultation.index');
-            }
+            // if(\Auth::user()->job_title_id != "Dosen Non Homebase"){
+            //     return redirect()->route('home');
+            // }else{
+            //     return redirect()->route('app_krs_consultation.index');
+            // }
             
             
         }
-        
+    
         //JIKA SALAH, MAKA KEMBALI KE LOGIN DAN TAMPILKAN NOTIFIKASI 
-        return redirect()->route('login')->with(['error' => 'email atau Password salah, silahkan ulangi lagi!']);
+        return redirect()->route('login')->withErrors(['msg' => 'Email atau Password salah, mohon coba lagi!']);
     }
 }

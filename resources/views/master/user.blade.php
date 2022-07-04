@@ -184,7 +184,7 @@
         header_search_box('#user-table',table);
 
         // button tambah 
-        $("div.tambah").html('<button type="button" id="tambah-user" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah User</button>');
+        $("div.tambah").html('<button   id="tambah-user" type="button" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm mr-2"></i>Tambah User</button>');  
         
         if("{{\Auth::user()->job_title_id}}" != "Operator"){   
             $('#tambah-user').css('display','none');

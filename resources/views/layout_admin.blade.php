@@ -12,7 +12,8 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     {{-- MAIN CSS AND JS: BOOTSTRAP, FONTAWESOME, STYLE.CSS dan SIBUHAR.CSS --}}
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    {{--
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     {{-- BOOTSTRAP CSS --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -69,7 +70,7 @@
 
     {{-- CLASS TAMBAHAN ASAL : navbar-dark bg-dark --}}
     <div class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="#######">SIM Prodi Pilkom</a>
+        <a class="navbar-brand" href="#######">SIMPRODI Pilkom</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fa fa-bars"></i></button><!-- Navbar Search-->
 
@@ -178,10 +179,25 @@
                         <div class="{{ Route::is('master*') ? '' : 'collapse'}}" id="collapseMaster"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link text-color" href="{{route('master_user.index')}}">Pengguna</a>
+                                <a class="nav-link text-color" href="{{route('master_user.index')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-user" style="color:steelblue;"></i>
+                                    </div>
+                                    Pengguna
+                                </a>
                                 @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
-                                <a class="nav-link text-color" href="{{route('master_room.index')}}">Ruangan</a>
-                                <a class="nav-link text-color" href="{{route('master_student.index')}}">Mahasiswa</a>
+                                <a class="nav-link text-color" href="{{route('master_room.index')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-square" style="color:steelblue;"></i>
+                                    </div>
+                                    Ruangan
+                                </a>
+                                <a class="nav-link text-color" href="{{route('master_student.index')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-user-graduate" style="color:steelblue;"></i>
+                                    </div>
+                                    Mahasiswa
+                                </a>
                                 @endif
                                 {{-- <a class="nav-link text-color" href="######">OTHER LINK</a> --}}
                             </nav>
@@ -200,15 +216,27 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
                                 <a class="nav-link text-color {{ Route::is('*meeting*') ? 'active' : ''}}"
-                                    href="{{route('app_meeting.index')}}">Catatan Rapat</a>
+                                    href="{{route('app_meeting.index')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-book" style="color:steelblue;"></i>
+                                    </div>Catatan Rapat
+                                </a>
                                 @endif
                                 <a class="nav-link text-color {{ Route::is('*app_krs_consultation.index*') ? 'active' : ''}}"
-                                    href="{{route('app_krs_consultation.index')}}">Konsultasi KRS <span
-                                        class="ml-1 badge badge-primary badge-pill">new</span></a>
+                                    href="{{route('app_krs_consultation.index')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-comments" style="color:steelblue;"></i>
+                                    </div>
+                                    Konsultasi KRS <span class="ml-1 badge badge-primary badge-pill">new</span>
+                                </a>
                                 @if (\Auth::user()->job_title_id != "Dosen Non Homebase")
                                 <a class="nav-link text-color {{ Route::is('*generate*') ? 'active' : ''}}"
-                                    href="{{route('app_krs_consultation.generate_view')}}">Create Konsul PA <span
-                                        class="ml-1 badge badge-primary badge-pill">new</span></a>
+                                    href="{{route('app_krs_consultation.generate_view')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-plus" style="color:steelblue;"></i>
+                                    </div>
+                                    Create Konsul PA <span class="ml-1 badge badge-primary badge-pill">new</span>
+                                </a>
                                 @endif
 
 
@@ -229,7 +257,12 @@
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link text-color {{ Route::is('system*') ? 'active' : ''}}"
-                                    href="{{route('system_job_title.index')}}">Jenis Pengguna</a>
+                                    href="{{route('system_job_title.index')}}">
+                                    <div class="sb-nav-link-icon">
+                                        <i class="fas fa-users" style="color:steelblue;"></i>
+                                    </div>
+                                    Jenis Pengguna
+                                </a>
                             </nav>
                         </div>
                         @endif

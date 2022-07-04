@@ -171,7 +171,8 @@ class MeetingController extends Controller
 
         Log::info('Update catatan rapat oleh - '.\Auth::user()->name);
         
-        return redirect()->route('app_meeting.index');
+        // return view('apps.meeting_minute.edit_meeting',compact(['users','rooms','data_meeting','participants']));
+        return redirect()->back();
     }
 
     /**
