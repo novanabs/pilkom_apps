@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::with('notulen','meetings')
+        ->whereIn('job_title_id',['Kaprodi','Sekprodi','Dosen','Operator'])
         ->orderBy('name')
         ->get();
 
